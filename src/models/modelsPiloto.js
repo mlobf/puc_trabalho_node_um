@@ -1,17 +1,44 @@
 class Piloto {
   /*
-    Sobre cada piloto é necessário armazenar seu 
+   Sobre cada piloto é necessário armazenar seu 
     número de matrícula, 
     nome, 
     e estado de sua habilitação (ativo/inativo). 
     */
-  constructor(numero_matricula, nome, estado_habilitacao) {
-    this.numero_matricula = numero_matricula;
-    this.nome = nome;
-    this.estado_habilitacao = estado_habilitacao;
+  #nome;
+  #matricula;
+  #habilitacaoAtiva;
+
+  constructor(nome, matricula, habilitacaoAtiva) {
+    this.#nome = nome;
+    this.#matricula = matricula;
+    this.#habilitacaoAtiva = habilitacaoAtiva;
   }
-  toStr() {
-    return `O nome do Piloto é ${this.nome}`;
+
+  get nome() {
+    return this.#nome;
+  }
+  get matricula() {
+    return this.#matricula;
+  }
+  get habilitacaoAtiva() {
+    return this.#habilitacaoAtiva;
+  }
+
+  set nome(valor) {
+    this.#nome = valor;
+  }
+
+  set matricula(valor) {
+    this.#matricula = valor;
+  }
+
+  set habilitacaoAtiva(valor) {
+    this.#habilitacaoAtiva = valor;
+  }
+  toString() {
+    let r = `O nome do piloto é ${this.#nome}`;
+    return r;
   }
 }
 

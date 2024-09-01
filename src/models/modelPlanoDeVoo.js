@@ -28,33 +28,34 @@ class PlanoDeVoo {
     possam ser aprovados de maneira sobreposta.
 */
   constructor(
-    identificadorNumerico,
-    matriculaPiloto,
-    responsavelVoo,
-    prefixoAeronave,
-    dataHoraVoo,
-    nomeAerovia,
+    id,
+    matricPiloto,
+    idAerovia,
+    data,
+    horario,
     altitude,
-    listaSlots,
-    foiCancelado
+    slots,
+    idAeronave,
+    cancelado
   ) {
-    this.identificadorNumerico = identificadorNumerico;
-    this.matriculaPiloto = matriculaPiloto;
+    this.id = id;
+    this.matriculPiloto = matriculaPiloto;
     this.responsavelVoo = responsavelVoo;
     this.prefixoAeronave = prefixoAeronave;
     this.dataHoraVoo = dataHoraVoo;
-    this.nomeAerovia = nomeAerovia;
+    this.idAerovia = idAerovia;
     this.altitude = altitude;
     this.listaSlots = listaSlots;
     this.foiCancelado = foiCancelado;
   }
+
   toStr() {
     let strPlanoVoo = "Plano de voo.";
     let strMatriculaPiloto = `Matricula do Piloto é ${this.matriculaPiloto} \n`;
     let strResponsavelVoo = `Responsavel Voo  é ${this.responsavelVoo} \n`;
     let strPrefixoAeronave = `Prefixo Aeronave é ${this.prefixoAeronave} \n`;
     let strDataHoraVoo = `Data Hora Voo é ${this.dataHoraVoo} \n`;
-    let strNomeAerovia = `Nome Aerovia é ${this.nomeAerovia} \n`;
+    let strIdAerovia = `O id da Aerovia é ${this.idAerovia} \n`;
     let strAltitude = `Altitude é ${this.altitude} \n`;
     let strListaSlots = `Lista Stots é ${this.listaSlots} \n`;
     let strFoiCancelado = `Foi Cancelado é ${this.foiCancelado} \n`;
@@ -65,7 +66,7 @@ class PlanoDeVoo {
       strResponsavelVoo +
       strPrefixoAeronave +
       strDataHoraVoo +
-      strNomeAerovia +
+      strIdAerovia +
       strAltitude +
       strListaSlots +
       strFoiCancelado

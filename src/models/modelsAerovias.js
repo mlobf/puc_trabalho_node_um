@@ -7,7 +7,7 @@ class Aerovias {
     -o aeroporto de origem, 
     -o aeroporto de destino e o 
     -tamanho da aerovia (em quilômetros). 
-    
+    --------------------------------------------------------------------------------------------------------------
     Por simplicidade iremos assumir que as aerovias possuem sentido único 
     (neste caso para que se possa ir e voltar entre Porto Alegre e Florianópolis serão necessárias duas aerovias: 
     POA-FLO e FLO-POA).
@@ -34,6 +34,7 @@ class Aerovias {
     Para que o controle de ocupação das aerovias possa ser feito, será necessário manter a lista das
     altitudes e slots de cada aerovia ocupados em cada dia (data).
    */
+
   constructor(
     identificador,
     aeroportoOrigem,
@@ -51,7 +52,11 @@ class Aerovias {
     let strAeroportoOrigem = `O aeroporto de Origem é ${this.aeroportoOrigem}`;
     let strAeroportoDestino = `O aeroporto de Destino é ${this.aeroportoDestino}`;
     let strTamanhoAerovia = `O tamanho da Aerovia é de ${this.tamanhoAerovia}`;
-    return `O nome do Aerovias é ${this.nome}`;
+    return `O nome do Aerovias é ${this.aeroportoDestina}`;
   }
 }
+
+let poaSp = new Aerovias("POA-GRU", "POA", "GRU", 1000);
+console.log(poaSp.toStr());
+
 export { Aerovias };

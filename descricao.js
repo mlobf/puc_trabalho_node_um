@@ -44,15 +44,21 @@ Nesta fase, você trabalhará na modelagem da solução e implementação das cl
 Nesta etapa, teremos dois entregáveis: 
 
 Implementação das seguintes classes:
+    -----Sao 6 Classes base.
 
     -Piloto
+
     -ServicoPilotos (capaz de recuperar as informações relativas aos pilotos que 
         podem ser responsáveis pelos voos)
+        
     -Hierarquia de classes de Aeronaves (conforme diagrama de classes apresentado 
         no arquivo “Especificação_Projeto_POO.pdf”) 
+
     -ServicoAeronaves (capaz de recuperar as informações sobre as aeronaves que 
         podem ser utilizadas nos planos de voo)
+
     -Aerovia
+
     -ServicoAerovias (capaz de recuperar as informações sobre as aerovias 
         disponíveis para os voos) 
 
