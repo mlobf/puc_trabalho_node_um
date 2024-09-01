@@ -1,4 +1,4 @@
-class Piloto {
+export class Piloto {
   /*
    Sobre cada piloto é necessário armazenar seu 
     número de matrícula, 
@@ -25,21 +25,24 @@ class Piloto {
     return this.#habilitacaoAtiva;
   }
 
-  set nome(valor) {
-    this.#nome = valor;
+  set nome(newNome) {
+    this.#nome = newNome;
   }
 
-  set matricula(valor) {
-    this.#matricula = valor;
+  set matricula(newMatricula) {
+    this.#matricula = newMatricula;
   }
 
-  set habilitacaoAtiva(valor) {
-    this.#habilitacaoAtiva = valor;
+  set habilitacaoAtiva(newHabilitacaoAtiva) {
+    this.#habilitacaoAtiva = newHabilitacaoAtiva;
   }
   toString() {
-    let r = `O nome do piloto é ${this.#nome}`;
-    return r;
+    let pn = `O nome do piloto é ${this.#nome}`;
+    let pm = `A Matricula do piloto é ${this.#matricula}`;
+    let ph = `A Situacao da habilitacao do piloto é ${this.#habilitacaoAtiva}`;
+
+    return pn + pm + ph;
   }
 }
-
-export { Piloto };
+let p = new Piloto("Marcos", "KKKOeekj12", true);
+console.log(p.toString());
