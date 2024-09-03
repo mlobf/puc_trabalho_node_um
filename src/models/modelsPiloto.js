@@ -44,5 +44,30 @@ export class Piloto {
     return pn + pm + ph;
   }
 }
-let p = new Piloto("Marcos", "KKKOeekj12", true);
-console.log(p.toString());
+
+export class ServicoPiloto {
+  constructor() {
+    this.base = [];
+  }
+  createPiloto(nome, matricula, habilitacaoAtiva) {
+    let p = new Piloto(nome, matricula, habilitacaoAtiva);
+    this.base.push(p);
+    return p;
+  }
+  getAllPiloto() {
+    return this.base;
+  }
+}
+
+let sp = new ServicoPiloto();
+
+sp.createPiloto("Marcos", 303030303, true);
+sp.createPiloto("Marcos", 303030303, true);
+sp.createPiloto("Marcos", 303030303, true);
+sp.createPiloto("Marcos", 303030303, true);
+sp.createPiloto("Marcos", 303030303, true);
+sp.createPiloto("Marcos", 303030303, true);
+sp.createPiloto("Marcos", 303030303, true);
+sp.createPiloto("Marcos", 303030303, true);
+
+console.log(sp.getAllPiloto());

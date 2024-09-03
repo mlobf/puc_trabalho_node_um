@@ -1,4 +1,4 @@
-class Aerovias {
+export class Aerovias {
   /*
     Aerovias
 

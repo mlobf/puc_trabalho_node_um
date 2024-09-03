@@ -1,15 +1,20 @@
-class Slot {
+export class Slot {
+  #idSlot;
   #nomeAerovia;
   #data;
   #horario;
   #altitude;
 
   constructor(nomeAerovia, data, horario, altitude) {
-    this.#data = data;
+    this.#idSlot = this.#nomeAerovia + this.#data;
     this.#nomeAerovia = nomeAerovia;
-    this.#altitude = altitude;
+    this.#data = data;
     this.#horario = horario;
     this.#altitude = altitude;
+  }
+
+  get idSlot() {
+    return this.#idSlot;
   }
 
   get nomeAerovia() {
@@ -37,8 +42,3 @@ class Slot {
     this.#altitude = newAltitude;
   }
 }
-let data = new Date(2022, 10, 22);
-console.log(data);
-let hoje = new Date();
-console.log(hoje);
-//let s = new Slot('GRU-POA',)

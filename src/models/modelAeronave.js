@@ -66,6 +66,10 @@ export class AeronaveParticular extends Aeronave {
   set respManutencao(newRespManutencao) {
     this.#respManutencao = newRespManutencao;
   }
+
+  toString() {
+    return `Aeronave Particular: ${this.prefixo}, velocidade de cruzeiro ${this.velocidadeCruzeiro}, autonomia ${this.autonomia}, responsavel manutencao ${this.#respManutencao}`;
+  }
 }
 
 export class AeronaveComercial extends Aeronave {
@@ -109,5 +113,6 @@ export class AeronavePassageiros extends AeronaveComercial {
 
 let ap = new AeronavePassageiros("PPPae", 800, 5000, "TAM", 800);
 let ac = new AeronaveComercial("PPPae", 800, 5000, "TAM");
-console.log(ap.toString());
-console.log(ac.toString());
+let aparticular = new AeronaveParticular("DUG 8035", 300, 600, "Mecanico Lito");
+
+
