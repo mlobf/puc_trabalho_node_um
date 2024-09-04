@@ -1,43 +1,44 @@
+import {
+  AeronaveComercial,
+  AeronaveParticular,
+  AeronavePassageiros,
+} from "./modelAeronave.js";
+
 class ServicoAeronaves {
   /*
     Capaz de recuperar as informações sobre as aeronaves que 
     podem ser utilizadas nos planos de voo
     */
-  #nome;
-  #matricula;
-  #habilitacaoAtiva;
 
-  constructor(nome, matricula, habilitacaoAtiva) {
-    this.#nome = nome;
-    this.#matricula = matricula;
-    this.#habilitacaoAtiva = habilitacaoAtiva;
+  constructor() {
+    this.base = new Map();
   }
 
-  get nome() {
-    return this.#nome;
-  }
-  get matricula() {
-    return this.#matricula;
-  }
-  get habilitacaoAtiva() {
-    return this.#habilitacaoAtiva;
-  }
-
-  set nome(valor) {
-    this.#nome = valor;
-  }
-
-  set matricula(valor) {
-    this.#matricula = valor;
-  }
-
-  set habilitacaoAtiva(valor) {
-    this.#habilitacaoAtiva = valor;
-  }
-
-  toStr() {
-    return `O nome do ServiçoAeronaves é ${this.nome}`;
+  criarAeronave(listaRequisitos) {
+    //Criar uma aeronave dado os parametro informados
+    //respManutencao
+    //nomeCompania
+    //maxPassageiros
+    if (listaRequisitos[0] == "Particular") {
+      let n = new AeronaveParticular(...listaRequisitos);
+      this.base.set(n);
+    }
+    if (listaRequisitos[0] == "Passageiros") {
+      let n = new AeronavePassageiros(...listaRequisitos);
+      this.base.set(n);
+    }
+    if (listaRequisitos[0] == "Comercial") {
+      let n = new AeronaveComercial(...listaRequisitos);
+      this.base.set(n);
+    }
   }
 }
 
 export { ServicoAeronaves };
+
+let sn = new ServicoAeronaves();
+
+let listaBase = ["Particular", "PTX 8080", 500, 800, "Lito"];
+
+sn.criarAeronave(listaBase);
+console.log(sn.base);

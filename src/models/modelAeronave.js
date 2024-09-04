@@ -19,16 +19,21 @@ Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.00
 Aeronaves de carga só podem voar entre a meia noite e as 6:00 da manhã.
 */
 export class Aeronave {
+  #tipo;
   #prefixo;
   #velocidadeCruzeiro;
   #autonomia;
 
-  constructor(prefixo, velocidadeCruzeiro, autonomia) {
+  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia) {
+    this.#tipo = tipo;
     this.#prefixo = prefixo;
     this.#velocidadeCruzeiro = velocidadeCruzeiro;
     this.#autonomia = autonomia;
   }
 
+  get tipo() {
+    return this.#tipo;
+  }
   get prefixo() {
     return this.#prefixo;
   }
@@ -37,6 +42,10 @@ export class Aeronave {
   }
   get autonomia() {
     return this.#autonomia;
+  }
+
+  set tipo(newTipo) {
+    this.#tipo = newTipo;
   }
 
   set prefixo(newPrefixo) {
@@ -55,8 +64,8 @@ export class Aeronave {
 export class AeronaveParticular extends Aeronave {
   #respManutencao;
 
-  constructor(prefixo, velocidadeCruzeiro, autonomia, respManutencao) {
-    super(prefixo, velocidadeCruzeiro, autonomia);
+  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, respManutencao) {
+    super(tipo, prefixo, velocidadeCruzeiro, autonomia);
     this.#respManutencao = respManutencao;
   }
   get respManutencao() {
@@ -75,8 +84,8 @@ export class AeronaveParticular extends Aeronave {
 export class AeronaveComercial extends Aeronave {
   #nomeCia;
 
-  constructor(prefixo, velocidadeCruzeiro, autonomia, nomeCia) {
-    super(prefixo, velocidadeCruzeiro, autonomia);
+  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia) {
+    super(tipo, prefixo, velocidadeCruzeiro, autonomia);
     this.#nomeCia = nomeCia;
   }
   get nomeCia() {
@@ -95,8 +104,15 @@ export class AeronaveComercial extends Aeronave {
 export class AeronavePassageiros extends AeronaveComercial {
   #maxPassageiros;
 
-  constructor(prefixo, velocidadeCruzeiro, autonomia, nomeCia, maxPassageiros) {
-    super(prefixo, velocidadeCruzeiro, autonomia, nomeCia);
+  constructor(
+    tipo,
+    prefixo,
+    velocidadeCruzeiro,
+    autonomia,
+    nomeCia,
+    maxPassageiros
+  ) {
+    super(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia);
     this.#maxPassageiros = maxPassageiros;
   }
   get maxPassageiros() {
@@ -110,9 +126,3 @@ export class AeronavePassageiros extends AeronaveComercial {
     return `Aeronave de Passageiros: ${this.prefixo}, velocidade de cruzeiro ${this.velocidadeCruzeiro}, autonomia ${this.autonomia}, nome da compania ${this.nomeCia}, max de passageiros ${this.#maxPassageiros}`;
   }
 }
-
-let ap = new AeronavePassageiros("PPPae", 800, 5000, "TAM", 800);
-let ac = new AeronaveComercial("PPPae", 800, 5000, "TAM");
-let aparticular = new AeronaveParticular("DUG 8035", 300, 600, "Mecanico Lito");
-
-

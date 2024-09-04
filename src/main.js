@@ -4,7 +4,3 @@ import { Piloto } from "./models/modelsPiloto.js";
 //const cesna = new Aeronave("PGT4040", "Comercial Pegueno Porte", 900, 1000);
 //console.log(cesna.toStr());
 //console.log(cesna.criarTipoAeronave());
-
-const p = new Piloto("Marcos", 2020202, true);
-
-console.log(p.toString());
