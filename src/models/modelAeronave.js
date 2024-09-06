@@ -59,6 +59,9 @@ export class Aeronave {
   set autonomia(newAutonomia) {
     this.#autonomia = newAutonomia;
   }
+  toString() {
+    return `Aeronave : ${this.prefixo}, velocidade de cruzeiro ${this.velocidadeCruzeiro}, autonomia ${this.autonomia}`;
+  }
 }
 
 export class AeronaveParticular extends Aeronave {

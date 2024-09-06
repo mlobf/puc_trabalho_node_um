@@ -58,5 +58,3 @@ export class Aerovias {
 
 let poaSp = new Aerovias("POA-GRU", "POA", "GRU", 1000);
 console.log(poaSp.toStr());
-
-export { Aerovias };
