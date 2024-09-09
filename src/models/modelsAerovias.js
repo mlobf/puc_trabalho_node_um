@@ -46,6 +46,93 @@ export class Aerovias {
     this.aeroportoDestina = aeroportoDestino;
     this.tamanhoAerovia = tamanhoAerovia;
   }
+  // Criar slots.
+  /*
+  Um slot é composto por altitude e de horario e dia 
+  Isso pode ser o Id composto Ano-Dia-Hora-Altitude
+  // Criar um today e dar um split com o ano + mes + dia + hora + altitude.
+  A altitude pode ser de uma range de 25.000 a 35.000 divididos em 1.000 metros.
+  Eu vou criar somente um range de um ano so para exempleficar.
+  Desta forma 
+
+
+  */
+  gerarRangeDeAnos() {
+    let listaRangeAnos = [];
+    for (let i = 2024; i < 2044; i++) {
+      listaRangeAnos.push(i);
+    }
+    return listaRangeAnos;
+  }
+
+  gerarDiasAno() {
+    let listaDiasAno = [];
+    for (let i = 1; i < 366; i++) {
+      listaDiasAno.push(i);
+    }
+    return listaDiasAno;
+  }
+
+  gerarMesAno() {
+    let listaMesAno = [];
+    for (let i = 1; i < 13; i++) {
+      listaMesAno.push(i);
+    }
+    return listaMesAno;
+  }
+
+  gerarHorasDia() {
+    let listaHorasDia = [];
+    for (let i = 0; i < 25; i++) {
+      listaHorasDia.push(i);
+    }
+    return listaHorasDia;
+  }
+
+  gerarRangeAltitude() {
+    let listaRangeAltitude = [];
+    for (let i = 25000; i < 36000; i = i + 1000) {
+      listaRangeAltitude.push(i);
+    }
+    return listaRangeAltitude;
+  }
+
+  // Gerar a lista de números de 1 a 365
+
+  gerarTodosSlots() {
+    let listaSlots = [];
+
+    let anos = this.gerarRangeDeAnos();
+    let meses = this.gerarMesAno();
+    let dias = this.gerarDiasAno();
+    let horas = this.gerarHorasDia();
+    let altitudes = this.gerarRangeAltitude();
+
+    for (let ano = 0; ano < anos.length; ano++) {
+      for (let mes = 0; mes < meses.length; mes++) {
+        for (let dia = 0; dia < dias.length; dia++) {
+          for (let hora = 0; hora < horas.length; hora++) {
+            for (let altitude = 0; altitude < altitudes.length; altitude++) {
+              let input =
+                String(anos[ano]) +
+                "-" +
+                String(meses[mes]) +
+                "-" +
+                String(dias[dia]) +
+                "-" +
+                String(horas[hora]) +
+                "-" +
+                String(altitudes[altitude]);
+              console.log(input);
+
+              //listaSlots.push(input);
+            }
+          }
+        }
+      }
+    }
+    return listaSlots;
+  }
 
   toStr() {
     let strIdentificador = `O identificador é ${this.identificador}`;
@@ -57,4 +144,4 @@ export class Aerovias {
 }
 
 let poaSp = new Aerovias("POA-GRU", "POA", "GRU", 1000);
-console.log(poaSp.toStr());
+console.log(poaSp.gerarTodosSlots());

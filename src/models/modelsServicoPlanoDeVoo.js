@@ -5,7 +5,7 @@ export class ServicoPlanoDeVoo {
     this.base = new Map();
   }
 
-  async criarPlanoDeVoo(listaDeRequisitos) {
+  criarPlanoDeVoo(listaDeRequisitos) {
     const [id, ...resto] = listaDeRequisitos;
     this.base.set(id, new PlanoDeVoo(id, ...resto)); // Usa o identificador como chave
   }
@@ -43,4 +43,4 @@ let payload = [
 
 let spdv = new ServicoPlanoDeVoo();
 spdv.criarPlanoDeVoo(payload);
-console.log(spdv.recuperarPlanoDeVoo("3023"));
+console.log(spdv.recuperarPlanoDeVoo("3023").toStr());

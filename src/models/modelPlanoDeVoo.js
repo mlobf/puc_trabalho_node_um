@@ -106,4 +106,18 @@ export class PlanoDeVoo {
   set cancelado(newCancelado) {
     this.#cancelado = newCancelado;
   }
+
+  toStr() {
+    let strId = `O identificador é ${this.id}`;
+    let strMatriculaPiloto = `O aeroporto de Origem é ${this.matricPiloto}`;
+    let strIdAerovia = `O aeroporto de Destino é ${this.idAerovia}`;
+    let strData = `O tamanho da Aerovia é de ${this.data}`;
+
+    let strHorario = `O tamanho da Aerovia é de ${this.horario}`;
+    let strAltitude = `O tamanho da Aerovia é de ${this.altitude}`;
+    let strSlots = `O tamanho da Aerovia é de ${this.slots}`;
+    let strCancelado = `O tamanho da Aerovia é de ${this.cancelado}`;
+
+    return `O nome do Aerovias é ${strId}, ${strMatriculaPiloto}, ${strIdAerovia}, ${strData}, ${strHorario}, ${strAltitude}, ${strSlots}, ${strCancelado}}`;
+  }
 }
