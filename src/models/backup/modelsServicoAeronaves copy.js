@@ -2,16 +2,13 @@ import {
   AeronaveComercial,
   AeronaveParticular,
   AeronavePassageiros,
-} from "./modelAeronave.js";
+} from "../modelAeronave.js";
 
-export class ServicoAeronaves {
-  #base; // Mapa privado para armazenar aeronaves
-
+class ServicoAeronaves {
   constructor() {
-    this.#base = new Map(); // Usar o prefixo como chave única
+    this.base = new Map(); // Usar o prefixo como chave única
   }
 
-  // Método público para criar uma nova aeronave
   criarAeronave(listaRequisitos) {
     const [tipo, prefixo, velocidadeCruzeiro, autonomia, ...resto] =
       listaRequisitos;
@@ -49,30 +46,28 @@ export class ServicoAeronaves {
 
     // Armazenar a aeronave no Map com o prefixo como chave
     if (aeronave) {
-      this.#base.set(prefixo, aeronave);
+      this.base.set(prefixo, aeronave);
     }
   }
 
-  // Método público para recuperar uma aeronave pelo prefixo
   recuperarAeronave(prefixo) {
-    return this.#base.get(prefixo).toString(); // Recuperar aeronave por prefixo
+    return this.base.get(prefixo); // Recuperar aeronave por prefixo
   }
 
-  // Método público para atualizar uma aeronave
   atualizarAeronave(prefixo, novosDados) {
-    if (this.#base.has(prefixo)) {
-      let aeronave = this.#base.get(prefixo);
+    if (this.base.has(prefixo)) {
+      let aeronave = this.base.get(prefixo);
       Object.assign(aeronave, novosDados); // Atualiza os dados da aeronave
     }
   }
 
-  // Método público para deletar uma aeronave pelo prefixo
   deletarAeronave(prefixo) {
-    this.#base.delete(prefixo); // Remover aeronave do Map
+    this.base.delete(prefixo); // Remover aeronave do Map
   }
 
-  // Método público para listar todas as aeronaves
   listarAeronaves() {
-    return Array.from(this.#base.values()).toString(); // Retornar todas as aeronaves
+    return Array.from(this.base.values()).toString(); // Retornar todas as aeronaves
   }
 }
+
+export { ServicoAeronaves };
