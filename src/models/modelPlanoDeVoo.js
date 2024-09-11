@@ -1,40 +1,27 @@
-/*
-  são identificadas por um prefixo (uma string).
-  Serão considerados 3 tipos de aeronave:
-• Aeronave particular de pequeno porte;
-• Aeronave comercial de passageiros;
-• Aeronave comercial de carga.
-
-Sobre qualquer aeronave é necessário armazenar o prefixo, 
-o tipo de aeronave, 
-a velocidade de cruzeiro (em quilômetros por hora) e 
-a autonomia (em quilômetros). 
-
-Para as aeronaves de pequeno porte é necessário armazenar também o nome da empresa responsável pela manutenção. 
-Para as aeronaves comerciais de passageiros é necessário armazenar a quantidade de passageiros que pode
-transportar e para as de carga o peso máximo em toneladas que é capaz de levar. 
-Para qualquer tipo de aeronave comercial é necessário armazenar o nome da companhia aérea.
-
-Aeronaves comerciais de passageiro só podem voar acima de 28.000 pés. 
-
-Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.000 pés. 
-
-Aeronaves de carga só podem voar entre a meia noite e as 6:00 da manhã.
-
-*/
-// Classe base que representa uma aeronave
-
-export class Aeronave {
-  #tipo; // Armazena o tipo da aeronave
-  #prefixo; // Prefixo de identificação da aeronave
-  #velocidadeCruzeiro; // Velocidade de cruzeiro da aeronave em km/h
-  #autonomia; // Autonomia da aeronave em km
+export class PlanoDeVoo {
+  #id; // Identificador da Plano de Voo
+  #matriculaPiloto; // Prefixo de identificação do Piloto Responsavel Pelo Plano de Voo
+  #idAerovia; // Identificador da Aerovia utilizado no plano de voo.
+  #data; // Data usado durante o curso do voo.
+  #horario; // Data usado durante o curso do voo.
+  #altitude; // Altitude Sugerida no plano de voo.
+  #slots; // Numero de slots utilizados durante o curso do plano de voo
+  #estaCancelado; // Reflete o Status caso o Plano de Voo Esteja Cancelado
 
   // Construtor que inicializa os atributos básicos da aeronave
-  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia) {
-    this.#tipo = tipo;
-    this.#prefixo = prefixo;
-    this.#velocidadeCruzeiro = velocidadeCruzeiro;
+  constructor(
+    id,
+    matriculaPiloto,
+    idAerovia,
+    data,
+    horario,
+    altitude,
+    slots,
+    estaCancelado
+  ) {
+    this.#id = id;
+    this.#matriculaPiloto = matriculaPiloto;
+    this.#idAerovia = idAerovia;
     this.#autonomia = autonomia;
   }
 
