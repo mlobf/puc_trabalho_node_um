@@ -20,9 +20,6 @@ export class ServicoPiloto {
   }
 
   recuperarPiloto(matricula) {
-    console.log(matricula);
-    console.log(typeof matricula);
-    console.log(this.base);
     //return this.base.get(identificador).toString(); // Recuperar aerovia por identificador
     return this.base.get(matricula); // Recuperar piloto por identificador
   }

@@ -1,7 +1,6 @@
 import { ServicoAeronaves } from "../models/modelsServicoAeronaves.js";
 import { ServicoPlanodeVoo } from "../models/modelsServicoPlanoDeVoo.js";
 import { ServicoPiloto } from "../models/modelsServicoPiloto.js";
-import { PlanoDeVoo } from "../models/modelPlanoDeVoo.js";
 
 /*
 Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.000 pés. 
@@ -19,7 +18,15 @@ que o tamanho da aerovia);
 
 */
 
-export function filtroHabilitacao(PlanoDeVoo, Piloto) {}
+export function filtroHabilitacao(PlanoDeVoo) {
+  console.log(PlanoDeVoo.matriculaPiloto);
+  let piloto = servicoPiloto.recuperarPiloto(PlanoDeVoo.matriculaPiloto);
+  console.log(piloto);
+  if (piloto) {
+    return true;
+  }
+  return false;
+}
 
 export function filtroAeronavePlanoDevoo(Aeronave, PlanoDeVoo) {
   if (
@@ -40,7 +47,13 @@ export function filtroAeronavePlanoDevoo(Aeronave, PlanoDeVoo) {
   return false;
 }
 //-----------------------------------------------------------------------------
-/*
+// Criar Piloto
+let pilotoPayload = ["808080", "marcos", true];
+let servicoPiloto = new ServicoPiloto();
+servicoPiloto.criarPiloto(pilotoPayload);
+let piloto = servicoPiloto.recuperarPiloto("808080");
+//-----------------------------------------------------------------------------
+
 const servicoAeronaves = new ServicoAeronaves();
 let aeronaveParticularPayload = ["Particular", "PTX 8080", 500, 800, "Lito"];
 let aeronavePassageiroPayload = ["Passageiro", "PTX 8081", 500, 800, "Lito"];
@@ -65,15 +78,6 @@ console.log("Aeronave");
 console.log(xxx.toString());
 console.log(xxx.tipo);
 //-----------------------------------------------------------------------------
-  #id; // Identificador da Plano de Voo
-  #matriculaPiloto; // Prefixo de identificação do Piloto Responsavel Pelo Plano de Voo
-  #idAerovia; // Identificador da Aerovia utilizado no plano de voo.
-  #data; // Data usado durante o curso do voo.
-  #horario; // Data usado durante o curso do voo.
-  #altitude; // Altitude Sugerida no plano de voo.
-  #slots; // Numero de slots utilizados durante o curso do plano de voo
-  #estaCancelado; // Reflete o Status caso o Plano de Voo Esteja Cancelado
-*/
 let pv = new ServicoPlanodeVoo();
 
 let payloadPlanoDeVoo = [
@@ -106,5 +110,12 @@ console.log("Listando Plano de Voos");
 console.log(pv.listarPlanoDeVoos());
 //-----------------------------------------------------------------------------
 console.log("Inicio do testes da funcao");
+//-----------------------------------------------------------------------------
 
-//console.log(filtroAeronavePlanoDevoo(x, pl));
+let plano = pv.recuperarPlanoDeVoos("ABC124");
+console.log(filtroAeronavePlanoDevoo(x, plano));
+console.log("==================================================");
+console.log("Filtro habilitacao");
+console.log("plano", plano.matriculaPiloto); //Nao identifica
+console.log(filtroHabilitacao(plano));
+console.log("==================================================");
