@@ -1,6 +1,7 @@
 export class PlanoDeVoo {
   #id; // Identificador da Plano de Voo
   #matriculaPiloto; // Prefixo de identificação do Piloto Responsavel Pelo Plano de Voo
+  #prefixoAeronave; // Prefixo de identificacao da Aeronave
   #idAerovia; // Identificador da Aerovia utilizado no plano de voo.
   #data; // Data usado durante o curso do voo.
   #horario; // Data usado durante o curso do voo.
@@ -12,6 +13,7 @@ export class PlanoDeVoo {
   constructor(
     id,
     matriculaPiloto,
+    prefixoAeronave,
     idAerovia,
     data,
     horario,
@@ -21,6 +23,7 @@ export class PlanoDeVoo {
   ) {
     this.#id = id;
     this.#matriculaPiloto = matriculaPiloto;
+    this.#prefixoAeronave = prefixoAeronave;
     this.#idAerovia = idAerovia;
     this.#data = data;
     this.#horario = horario;
@@ -42,6 +45,13 @@ export class PlanoDeVoo {
   }
   set matriculaPiloto(newMatriculaPiloto) {
     this.#matriculaPiloto = newMatriculaPiloto;
+  }
+
+  get prefixoAeronave() {
+    return this.#prefixoAeronave;
+  }
+  set prefixoAeronave(newPrefixoAeronave) {
+    this.#prefixoAeronave = newPrefixoAeronave;
   }
 
   get idAerovia() {
@@ -91,6 +101,7 @@ export class PlanoDeVoo {
     id,
     matriculaPiloto,
     idAerovia,
+    prefixoAeronave
     data,
     horario,
     altitude,
@@ -106,6 +117,7 @@ export class PlanoDeVoo {
     \n
     id: ${this.id},\n 
     matricula piloto:  ${this.#matriculaPiloto},\n 
+    prefixo aeronave:  ${this.#prefixoAeronave},\n 
     idAerovia ${this.idAerovia}\n
     data ${this.data}\n
     horario ${this.horario}\n

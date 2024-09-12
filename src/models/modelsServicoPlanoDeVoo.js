@@ -15,7 +15,7 @@ export class ServicoPlanodeVoo {
   }
 
   recuperarPlanoDeVoos(identificador) {
-    return this.base.get(identificador).toString(); // Recuperar plano de voo por identificador
+    return this.base.get(identificador); // Recuperar plano de voo por identificador
   }
 
   atualizarPlanoDeVoo(identificador, novosDados) {

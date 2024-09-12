@@ -15,7 +15,7 @@ export class ServicoAerovias {
   }
 
   recuperarAerovia(identificador) {
-    return this.base.get(identificador).toString(); // Recuperar aerovia por identificador
+    return this.base.get(identificador); // Recuperar aerovia por identificador
   }
 
   atualizarAerovia(identificador, novosDados) {
