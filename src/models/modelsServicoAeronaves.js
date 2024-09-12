@@ -2,6 +2,7 @@ import {
   AeronaveComercial,
   AeronaveParticular,
   AeronavePassageiros,
+  AeronaveCarga,
 } from "./modelAeronave.js";
 
 export class ServicoAeronaves {
@@ -45,6 +46,16 @@ export class ServicoAeronaves {
         autonomia,
         nomeCia
       );
+    } else if (tipo === "Carga") {
+      const [nomeCia, maxCarga] = resto;
+      aeronave = new AeronaveCarga(
+        tipo,
+        prefixo,
+        velocidadeCruzeiro,
+        autonomia,
+        nomeCia,
+        maxCarga
+      );
     }
 
     // Armazenar a aeronave no Map com o prefixo como chave
@@ -55,8 +66,7 @@ export class ServicoAeronaves {
 
   // Método público para recuperar uma aeronave pelo prefixo
   recuperarAeronave(prefixo) {
-    //return this.#base.get(prefixo).toString(); // Recuperar aeronave por prefixo
-    return this.#base.get(prefixo); // Recuperar aeronave por prefixo
+    return this.#base.get(prefixo); // Recuperar aeronave por prefixocatch (error) {}
   }
 
   // Método público para atualizar uma aeronave

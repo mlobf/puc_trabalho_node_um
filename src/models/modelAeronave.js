@@ -155,3 +155,28 @@ export class AeronavePassageiros extends AeronaveComercial {
     return `Aeronave de Passageiros:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia},\n máximo de passageiros ${this.#maxPassageiros}\n`;
   }
 }
+
+// Classe que representa uma aeronave de carga, herdando de AeronaveComercial
+export class AeronaveCarga extends AeronaveComercial {
+  #maxCarga; // Armazena a quantidade máxima de Carga
+
+  // Construtor que inicializa os atributos da aeronave de carga
+  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia, maxCarga) {
+    super(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia); // Chama o construtor da classe pai
+    this.#maxCarga = maxCarga;
+  }
+
+  // Getter e setter para acessar e modificar a quantidade máxima de carga
+  get maxCarga() {
+    return this.#maxCarga;
+  }
+
+  set maxCarga(newMaxCarga) {
+    this.#maxCarga = newMaxCarga;
+  }
+
+  // Método que retorna uma string com os detalhes da aeronave de carga
+  toString() {
+    return `Aeronave de Carga:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia},\n máximo de carga ${this.maxCarga}\n`;
+  }
+}
