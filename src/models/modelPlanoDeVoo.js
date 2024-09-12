@@ -125,29 +125,30 @@ export class PlanoDeVoo {
     altitude,
     slots,
     estaCancelado
-*/
-
-let payloadPlanoDeVoo = [
-  "ABC123", //id
-  "808080", //matriculaPiloto
-  "PUC-RS", //idAerovia
-  "26/11/1981", //data
-  "10:45", //horario
-  25001, //altitude
-  4, //slots
-  false, // estaCancelado
-];
-
-let testePlanoVoo1 = new PlanoDeVoo(payloadPlanoDeVoo);
-let testePlanoVoo2 = new PlanoDeVoo(
-  "ABC123", //id
-  "808080", //matriculaPiloto
-  "PUC-RS", //idAerovia
-  "26/11/1981", //data
-  "10:45", //horario
-  25001, //altitude
-  4, //slots
-  false // estaCancelado
-);
-console.log(testePlanoVoo1.toString());
-console.log(testePlanoVoo2.toString());
+    
+    let payloadPlanoDeVoo = [
+        "ABC123", //id
+        "808080", //matriculaPiloto
+        "PUC-RS", //idAerovia
+        "26/11/1981", //data
+        "10:45", //horario
+        25001, //altitude
+        4, //slots
+        false, // estaCancelado
+    ];
+    
+    let testePlanoVoo1 = new PlanoDeVoo(payloadPlanoDeVoo);
+    let testePlanoVoo2 = new PlanoDeVoo(
+        "ABC123", //id
+        "808080", //matriculaPiloto
+        "PUC-RS", //idAerovia
+        "26/11/1981", //data
+        "10:45", //horario
+        25001, //altitude
+        4, //slots
+        false // estaCancelado
+    );
+    console.log(testePlanoVoo1.toString());
+    console.log(testePlanoVoo2.toString());
+    
+    */

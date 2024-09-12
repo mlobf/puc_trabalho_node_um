@@ -86,9 +86,23 @@ let payloadPlanoDeVoo = [
   4,
   false,
 ];
-let pp = new PlanoDeVoo(payloadPlanoDeVoo);
-console.log(pp.toString());
 
+let payloadPlanoDeVoo1 = [
+  "ABC124",
+  "808080",
+  "GRU-MAU",
+  "26/11/1981",
+  "10:45",
+  25001,
+  4,
+  false,
+];
+
+pv.criarPlanoDeVoo(payloadPlanoDeVoo);
+pv.criarPlanoDeVoo(payloadPlanoDeVoo1);
+//console.log(pv.toString());
+
+console.log("Listando Plano de Voos");
 console.log(pv.listarPlanoDeVoos());
 //-----------------------------------------------------------------------------
 console.log("Inicio do testes da funcao");
