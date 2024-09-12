@@ -1,101 +1,141 @@
-import { ServicoPiloto } from "./models/modelsServicoPiloto.js";
 import { ServicoAeronaves } from "./models/modelsServicoAeronaves.js";
 import { ServicoAerovias } from "./models/modelsServicoAerovias.js";
+import { ServicoPiloto } from "./models/modelsServicoPiloto.js";
+import { ServicoPlanodeVoo } from "./models/modelsServicoPlanoDeVoo.js";
+
+import {
+  filtroAeronavePlanoDevoo,
+  filtroAltitude,
+  filtroAutonomiaAeronave,
+  filtroHabilitacao,
+  filtroRestricaoHorario,
+} from "./utils/aeronaves.js";
+
+// Eu estou criando os processos do slots na criacao do plano de voo.
 
 /*
-Implementação das seguintes classes:
-Piloto
-ServicoPilotos (capaz de recuperar as informações relativas aos pilotos que podem ser responsáveis pelos voos)
-Hierarquia de classes de Aeronaves (conforme diagrama de classes apresentado no arquivo “Especificação_Projeto_POO.pdf”) 
-ServicoAeronaves (capaz de recuperar as informações sobre as aeronaves que podem ser utilizadas nos planos de voo)
-Aerovia
-ServicoAerovias (capaz de recuperar as informações sobre as aerovias disponíveis para os voos) 
-*/
-
-console.log("-----------------------------------");
-console.log("Testes Servicos Pilotos");
-console.log("-----------------------------------");
-// Testes Serviço Piloto
-//------------------------------------------------------------------------
+ */
+//-----------------------------------------------------------------------------
+//---------------------Instanciar os serviços ---------------------------------
+//-----------------------------------------------------------------------------
 const servicoPiloto = new ServicoPiloto();
-
-let pilotoPayload = ["odsdifdsf3232", "marcos", true];
-let pilotoPayload1 = ["odsdifdsf3231", "maria", true];
-let pilotoPayload2 = ["odsdifdsf3230", "lis", true];
-let pilotoPayload3 = ["odsdifdsf3239", "carolina", true];
-let pilotoPayload4 = ["odsdifdsf3we2", "eliza", true];
-let pilotoPayload5 = ["odsdifddssf3232", "conceicao", true];
-let pilotoPayload6 = ["odsdifdsf32sd32", "Gisela", true];
-
-servicoPiloto.criarPiloto(pilotoPayload);
-servicoPiloto.criarPiloto(pilotoPayload1);
-servicoPiloto.criarPiloto(pilotoPayload2);
-servicoPiloto.criarPiloto(pilotoPayload3);
-servicoPiloto.criarPiloto(pilotoPayload4);
-servicoPiloto.criarPiloto(pilotoPayload5);
-servicoPiloto.criarPiloto(pilotoPayload6);
-console.log(servicoPiloto.listarPilotos());
-
-console.log("Procurar piloto com matricula odsdifdsf3232");
-
-let result = servicoPiloto.recuperarPiloto("odsdifdsf3232");
-console.log(result.toString());
-//------------------------------------------------------------------------
-
-// Testes Serviço Aeronaves
-console.log("-----------------------------------");
-console.log("Testes Servicos Aeronaves");
-console.log("-----------------------------------");
-//------------------------------------------------------------------------
 const servicoAeronaves = new ServicoAeronaves();
+const servicoPlanoDeVoo = new ServicoPlanodeVoo();
+const servicoAerovias = new ServicoAerovias();
+//-----------------------------------------------------------------------------
 
-let aeronaveParticularPayload = ["Particular", "PTX 8080", 500, 800, "Lito"];
-let aeronavePassageirosPayload = [
-  "Passageiros",
-  "PTX 9090",
-  600,
-  1000,
-  "Compania A",
-  150,
+// Criar Aerovia
+/*
+  #identificador;
+  #aeroportoOrigem;
+  #aeroportoDestino;
+  #tamanhoAerovia;
+  let aeroviaPayload = ["GRU-MAU", "GRU", "MAU", 1500];
+  servicoAerovias.criarAerovia(aeroviaPayload);
+  
+  // Criar Piloto
+  let pilotoPayload = ["808080", "marcos", true];
+  servicoPiloto.criarPiloto(pilotoPayload);
+  let piloto = servicoPiloto.recuperarPiloto("808080");
+  //-----------------------------------------------------------------------------
+  let aeronaveParticularPayload = ["Particular", "PTX 8080", 500, 800, "Lito"];
+  //tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia, maxPassageiros;
+  let aeronavePassageiroPayload1 = [
+    "Passageiros",
+    "PTX 8081",
+    500,
+    800,
+    "TAM",
+    800,
+  ];
+  
+  let aeronavePassageiroPayload2 = ["Carga", "PTX 8081", 500, 800, "TAM", 800];
+  
+  let aeronaveCargaPayload = ["Carga", "PTX 8082", 500, 800, "VARIG", 1000];
+  //-------Criando as aeronaves
+  servicoAeronaves.criarAeronave(aeronaveParticularPayload);
+  servicoAeronaves.criarAeronave(aeronavePassageiroPayload1);
+  servicoAeronaves.criarAeronave(aeronaveCargaPayload);
+  
+  console.log(servicoAeronaves.recuperarAeronave("PTX 8080").toString());
+  console.log(servicoAeronaves.recuperarAeronave("PTX 8081").toString());
+  console.log(servicoAeronaves.recuperarAeronave("PTX 8082").toString()); //CARGA
+  */
+
+/*
+ */
+/*
+    id,
+    matriculaPiloto,
+    prefixoAeronave,
+    idAerovia,
+    data,
+    horario,
+    altitude,
+    slots,
+    estaCancelado
+    let payloadPlanoDeVoo = [
+      "ABC121",
+      "808080",
+      "PTX 8081",
+      "PUC-RS",
+      "26/11/1981",
+      "10:45",
+      25001,
+      4,
+      false,
+    ];
+
+    let payloadPlanoDeVoo1 = [
+      "ABC122",
+      "808080",
+      "PTX 8081",
+      "GRU-MAU",
+  "26/11/1981",
+  "10:45",
+  29001,
+  4,
+  false,
+];
+let payloadPlanoDeVooCarga = [
+  "ABC124",
+  "808080",
+  "PTX 8082",
+  "GRU-MAU",
+  "26/11/1981",
+  "5:45",
+  29001,
+  4,
+  false,
 ];
 
-let aeronaveComercialPayload = [
-  "Comercial",
-  "PTX 9099",
-  660,
-  3000,
-  "Compania B",
-];
+//servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVoo);
+//servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVoo1);
+servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVooCarga);
+//console.log(pv.toString());
 
-servicoAeronaves.criarAeronave(aeronaveParticularPayload);
-servicoAeronaves.criarAeronave(aeronavePassageirosPayload);
-servicoAeronaves.criarAeronave(aeronaveComercialPayload);
+//-----------------------------------------------------------------------------
+console.log("Inicio do testes da funcao");
+//-----------------------------------------------------------------------------
 
-console.log("listar Aeronaves");
-console.log(servicoAeronaves.listarAeronaves());
-
-console.log("Recuperar Aeronaves por Matricula ");
-let ptx8080 = servicoAeronaves.recuperarAeronave("PTX 8080");
-console.log(ptx8080);
-
-//------------------------------------------------------------------------
-// Testes Serviço Aerovias
-
-console.log("-----------------------------------");
-console.log("Testes Servicos Aerovias");
-console.log("-----------------------------------");
-let servicoAerovias = new ServicoAerovias();
-
-let payload = ["POA-GRU", "POA", "GRU", 1000];
-let payload1 = ["RJU-GRU", "RJU", "GRU", 1000];
-let payload2 = ["PPI-GRU", "PPI", "GRU", 1000];
-let payload3 = ["MAU-GRU", "MAU", "GRU", 1000];
-
-servicoAerovias.criarAerovia(payload);
-servicoAerovias.criarAerovia(payload1);
-servicoAerovias.criarAerovia(payload2);
-servicoAerovias.criarAerovia(payload3);
-console.log("Listar aerovias");
-console.log(servicoAerovias.listarAerovias()); // Deve listar todas as aerovias
-console.log("Recuperar aerovias por identificador POA-GRU");
-console.log(servicoAerovias.recuperarAerovia("POA-GRU"));
+//-----------------------------------------------------------------------------
+//let plano = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC124");
+//let plano1 = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC123");
+let planoCargaHorario = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC124");
+//-----------------------------------------------------------------------------
+/*
+console.log("==================================================");
+console.log("filtro habilitacao", filtroHabilitacao(plano));
+console.log("==================================================");
+console.log("filtro autonomia aeronave", filtroAutonomiaAeronave(plano));
+console.log("==================================================");
+console.log(
+  "filtro altitude aeronave plano de voo plano",
+  filtroAltitude(plano)
+);
+console.log(
+  "filtro altitude aeronave plano de voo plano1 ",
+  filtroAltitude(planoCargaHorario)
+);
+console.log(filtroRestricaoHorario(planoCargaHorario));
+*/

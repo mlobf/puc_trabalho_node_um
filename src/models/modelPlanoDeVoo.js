@@ -29,6 +29,15 @@ export class PlanoDeVoo {
     this.#horario = horario;
     this.#altitude = altitude;
     this.#slots = slots;
+    /*
+    iO slot reflete uma hora no curso do translado.
+    Inicia-se a contagem no horario da partida e este é 
+    representado por this.horario.
+    Como o numero de slots é proporcional tanto à velocidade media da aeronave em questao
+        quanto ao tamanho da aerovia a ser percorrida. 
+    Logo a razão seria:
+        horario de partida - (velocidade da aeronave/tamanho da aerovia)
+    */
     this.#estaCancelado = estaCancelado;
   }
 
