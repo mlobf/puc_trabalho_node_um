@@ -22,123 +22,132 @@ export class PlanoDeVoo {
     this.#id = id;
     this.#matriculaPiloto = matriculaPiloto;
     this.#idAerovia = idAerovia;
-    this.#autonomia = autonomia;
+    this.#data = data;
+    this.#horario = horario;
+    this.#altitude = altitude;
+    this.#slots = slots;
+    this.#estaCancelado = estaCancelado;
   }
 
   // Getters e setters para acessar e modificar os atributos privados
-  get tipo() {
-    return this.#tipo;
+  get id() {
+    return this.#id;
   }
-  get prefixo() {
-    return this.#prefixo;
-  }
-  get velocidadeCruzeiro() {
-    return this.#velocidadeCruzeiro;
-  }
-  get autonomia() {
-    return this.#autonomia;
+  set id(newId) {
+    this.#id = newId;
   }
 
-  set tipo(newTipo) {
-    this.#tipo = newTipo;
+  get matriculaPiloto() {
+    return this.#matriculaPiloto;
+  }
+  set matriculaPiloto(newMatriculaPiloto) {
+    this.#matriculaPiloto = newMatriculaPiloto;
   }
 
-  set prefixo(newPrefixo) {
-    this.#prefixo = newPrefixo;
+  get idAerovia() {
+    return this.#idAerovia;
+  }
+  set idAerovia(newIdAerovia) {
+    this.#idAerovia = newIdAerovia;
   }
 
-  set velocidadeCruzeiro(newVelocidadeCruzeiro) {
-    this.#velocidadeCruzeiro = newVelocidadeCruzeiro;
+  get data() {
+    return this.#data;
+  }
+  set data(newData) {
+    this.#data = newData;
   }
 
-  set autonomia(newAutonomia) {
-    this.#autonomia = newAutonomia;
+  get horario() {
+    return this.#horario;
+  }
+  set horario(newHorario) {
+    this.#horario = newHorario;
+  }
+  get altitude() {
+    return this.#altitude;
+  }
+  set altitude(newAltitude) {
+    this.#altitude = newAltitude;
   }
 
-  // Método que retorna uma string com os detalhes da aeronave
+  get slots() {
+    return this.#slots;
+  }
+  set slots(newSlots) {
+    this.#slots = newSlots;
+  }
+
+  get estaCancelado() {
+    return this.#estaCancelado;
+  }
+  set estaCancelado(NewEstaCancelado) {
+    this.#estaCancelado = NewEstaCancelado;
+  }
+
+  // Método que retorna uma string com os detalhes de um plano de voo
   toString() {
-    return `Aeronave :\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia}\n`;
+    /*
+    id,
+    matriculaPiloto,
+    idAerovia,
+    data,
+    horario,
+    altitude,
+    slots,
+    estaCancelado
+    */
+
+    return `
+    \n
+    ---------------------------------
+    Plano de voo :\n 
+    ---------------------------------
+    \n
+    id: ${this.id},\n 
+    matricula piloto:  ${this.#matriculaPiloto},\n 
+    idAerovia ${this.idAerovia}\n
+    data ${this.data}\n
+    horario ${this.horario}\n
+    altitude ${this.altitude}\n
+    slots ${this.slots}\n
+    estaCancelado ${this.estaCancelado}\n
+    ---------------------------------
+    `;
   }
 }
+/*
+    id,
+    matriculaPiloto,
+    idAerovia,
+    data,
+    horario,
+    altitude,
+    slots,
+    estaCancelado
+*/
 
-// Classe que representa uma aeronave particular, herdando de Aeronave
-export class AeronaveParticular extends Aeronave {
-  #respManutencao; // Armazena o responsável pela manutenção da aeronave
+let payloadPlanoDeVoo = [
+  "ABC123", //id
+  "808080", //matriculaPiloto
+  "PUC-RS", //idAerovia
+  "26/11/1981", //data
+  "10:45", //horario
+  25001, //altitude
+  4, //slots
+  false, // estaCancelado
+];
 
-  // Construtor que inicializa os atributos da aeronave particular
-  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, respManutencao) {
-    super(tipo, prefixo, velocidadeCruzeiro, autonomia); // Chama o construtor da classe pai
-    this.#respManutencao = respManutencao;
-  }
-
-  // Getter e setter para acessar e modificar o responsável pela manutenção
-  get respManutencao() {
-    return this.#respManutencao;
-  }
-
-  set respManutencao(newRespManutencao) {
-    this.#respManutencao = newRespManutencao;
-  }
-
-  // Método que retorna uma string com os detalhes da aeronave particular
-  toString() {
-    return `Aeronave Particular:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n responsável pela manutenção ${this.#respManutencao}, \n`;
-  }
-}
-
-// Classe que representa uma aeronave comercial, herdando de Aeronave
-export class AeronaveComercial extends Aeronave {
-  #nomeCia; // Armazena o nome da companhia aérea
-
-  // Construtor que inicializa os atributos da aeronave comercial
-  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia) {
-    super(tipo, prefixo, velocidadeCruzeiro, autonomia); // Chama o construtor da classe pai
-    this.#nomeCia = nomeCia;
-  }
-
-  // Getter e setter para acessar e modificar o nome da companhia aérea
-  get nomeCia() {
-    return this.#nomeCia;
-  }
-
-  set nomeCia(newNomeCia) {
-    this.#nomeCia = newNomeCia;
-  }
-
-  // Método que retorna uma string com os detalhes da aeronave comercial
-  toString() {
-    return `Aeronave Comercial:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia}\n`;
-  }
-}
-
-// Classe que representa uma aeronave de passageiros, herdando de AeronaveComercial
-export class AeronavePassageiros extends AeronaveComercial {
-  #maxPassageiros; // Armazena a quantidade máxima de passageiros
-
-  // Construtor que inicializa os atributos da aeronave de passageiros
-  constructor(
-    tipo,
-    prefixo,
-    velocidadeCruzeiro,
-    autonomia,
-    nomeCia,
-    maxPassageiros
-  ) {
-    super(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia); // Chama o construtor da classe pai
-    this.#maxPassageiros = maxPassageiros;
-  }
-
-  // Getter e setter para acessar e modificar a quantidade máxima de passageiros
-  get maxPassageiros() {
-    return this.#maxPassageiros;
-  }
-
-  set maxPassageiros(newMaxPassageiros) {
-    this.#maxPassageiros = newMaxPassageiros;
-  }
-
-  // Método que retorna uma string com os detalhes da aeronave de passageiros
-  toString() {
-    return `Aeronave de Passageiros:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia},\n máximo de passageiros ${this.#maxPassageiros}\n`;
-  }
-}
+let testePlanoVoo1 = new PlanoDeVoo(payloadPlanoDeVoo);
+let testePlanoVoo2 = new PlanoDeVoo(
+  "ABC123", //id
+  "808080", //matriculaPiloto
+  "PUC-RS", //idAerovia
+  "26/11/1981", //data
+  "10:45", //horario
+  25001, //altitude
+  4, //slots
+  false // estaCancelado
+);
+console.log(testePlanoVoo1.toString());
+console.log(testePlanoVoo2.toString());

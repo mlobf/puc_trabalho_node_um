@@ -55,7 +55,8 @@ export class ServicoAeronaves {
 
   // Método público para recuperar uma aeronave pelo prefixo
   recuperarAeronave(prefixo) {
-    return this.#base.get(prefixo).toString(); // Recuperar aeronave por prefixo
+    //return this.#base.get(prefixo).toString(); // Recuperar aeronave por prefixo
+    return this.#base.get(prefixo); // Recuperar aeronave por prefixo
   }
 
   // Método público para atualizar uma aeronave
