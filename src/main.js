@@ -11,8 +11,6 @@ import {
   filtroRestricaoHorario,
 } from "./utils/aeronaves.js";
 
-// Eu estou criando os processos do slots na criacao do plano de voo.
-
 /*
  */
 //-----------------------------------------------------------------------------
@@ -20,9 +18,80 @@ import {
 //-----------------------------------------------------------------------------
 const servicoPiloto = new ServicoPiloto();
 const servicoAeronaves = new ServicoAeronaves();
-const servicoPlanoDeVoo = new ServicoPlanodeVoo();
 const servicoAerovias = new ServicoAerovias();
+const servicoPlanoDeVoo = new ServicoPlanodeVoo();
 //-----------------------------------------------------------------------------
+// Criar Pilotos
+/*
+  #matricula;
+  #nome;
+  #habilitacaoAtiva;
+*/
+let pilotoPayloadAtivo = ["808080", "marcos", true];
+servicoPiloto.criarPiloto(pilotoPayloadAtivo);
+let pilotoAtivo = servicoPiloto.recuperarPiloto("808080");
+
+let pilotoPayloadInativo = ["808081", "Joao", false];
+servicoPiloto.criarPiloto(pilotoPayloadInativo);
+let pilotoInativo = servicoPiloto.recuperarPiloto("808081");
+
+//-----------------------------------------------------------------------------
+//---------------Criando as aeronaves------------------------------------------
+//Gerando os payloads.
+
+//Aeronave Particular
+/*
+tipo, 
+prefixo, 
+velocidadeCruzeiro, 
+autonomia, 
+respManutencao
+*/
+let aeronaveParticularPayload = [
+  "Particular", 
+  "PTX 8080", 
+  500, 
+  800, 
+  "Lito"
+];
+// Aeronave Passageiros
+/*
+tipo, 
+prefixo, 
+velocidadeCruzeiro, 
+autonomia, 
+nomeCia, 
+maxPassageiros
+*/
+let aeronavePassageiroPayload = [
+  "Passageiros",
+  "PTX 8081",
+  500,
+  800,
+  "TAM",
+  800,
+];
+// Aeronave Carga
+/*
+tipo, 
+prefixo, 
+velocidadeCruzeiro, 
+autonomia, 
+nomeCia, 
+maxCarga
+*/
+let aeronaveCargaPayload = [
+  "Carga", 
+  "PTX 8082", 
+  500, 
+  800, 
+  "VARIG", 
+  1000
+];
+//-------Criando as aeronaves
+servicoAeronaves.criarAeronave(aeronaveParticularPayload);
+servicoAeronaves.criarAeronave(aeronavePassageiroPayload1);
+servicoAeronaves.criarAeronave(aeronaveCargaPayload);
 
 // Criar Aerovia
 /*
@@ -32,7 +101,7 @@ const servicoAerovias = new ServicoAerovias();
   #tamanhoAerovia;
   let aeroviaPayload = ["GRU-MAU", "GRU", "MAU", 1500];
   servicoAerovias.criarAerovia(aeroviaPayload);
-  
+
   // Criar Piloto
   let pilotoPayload = ["808080", "marcos", true];
   servicoPiloto.criarPiloto(pilotoPayload);
