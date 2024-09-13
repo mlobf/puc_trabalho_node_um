@@ -16,10 +16,10 @@ import {
 //-----------------------------------------------------------------------------
 //---------------------Instanciar os serviços ---------------------------------
 //-----------------------------------------------------------------------------
-const servicoPiloto = new ServicoPiloto();
-const servicoAeronaves = new ServicoAeronaves();
-const servicoAerovias = new ServicoAerovias();
-const servicoPlanoDeVoo = new ServicoPlanodeVoo();
+export const servicoPiloto = new ServicoPiloto();
+export const servicoAeronaves = new ServicoAeronaves();
+export const servicoAerovias = new ServicoAerovias();
+export const servicoPlanoDeVoo = new ServicoPlanodeVoo();
 //-----------------------------------------------------------------------------
 // Criar Pilotos
 /*
@@ -129,7 +129,7 @@ let payloadPlanoDeVooPassageiros = [
 ];
 
 let payloadPlanoDeVooCarga = [
-  "ABC124",
+  "ABC123",
   "808080",
   "PTX 8082",
   "GRU-MAU",
@@ -149,12 +149,35 @@ console.log("Inicio do testes da funcao");
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-//let plano = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC124");
-//let plano1 = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC123");
-//let planoCargaHorario = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC124");
+// Recuperando os planos de voo
+console.log("recuperando os planos de voo");
+let planoParticular = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC121");
+let planoPassageiros = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC122");
+let planoCarga = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC123");
+
+console.log(planoParticular.toString());
+console.log(planoPassageiros.toString());
+console.log(planoCarga.toString());
+
 //-----------------------------------------------------------------------------
-//console.log("==================================================");
-//console.log("filtro habilitacao", filtroHabilitacao(plano));
+//---------Testando os filtros-------------------------------------------------
+//-----------------------------------------------------------------------------
+console.log("Testando os filtros");
+
+console.log("==================================================");
+console.log(
+  "filtro habilitacao particular",
+  filtroHabilitacao(planoParticular)
+);
+console.log(
+  "filtro habilitacao passageiros",
+  filtroHabilitacao(planoPassageiros)
+);
+console.log(
+  "filtro habilitacao carga           . ",
+  filtroHabilitacao(planoCarga)
+);
+
 //console.log("==================================================");
 //console.log("filtro autonomia aeronave", filtroAutonomiaAeronave(plano));
 //console.log("==================================================");

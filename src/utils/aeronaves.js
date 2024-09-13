@@ -3,6 +3,13 @@ import { ServicoAerovias } from "../models/modelsServicoAerovias.js";
 import { ServicoPlanodeVoo } from "../models/modelsServicoPlanoDeVoo.js";
 import { ServicoPiloto } from "../models/modelsServicoPiloto.js";
 
+import {
+  servicoPiloto,
+  servicoAeronaves,
+  servicoPlanoDeVoo,
+  servicoAerovias,
+} from "../main.js";
+
 /*
 Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.000 pés. 
 Aeronaves comerciais de passageiro só podem voar acima de 28.000 pés. 
