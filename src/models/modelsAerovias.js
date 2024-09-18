@@ -144,4 +144,5 @@ export class Aerovias {
 }
 
 let poaSp = new Aerovias("POA-GRU", "POA", "GRU", 1000);
-console.log(poaSp.gerarTodosSlots());
+//console.log(poaSp.gerarTodosSlots());
+console.log(Date.now());

@@ -69,3 +69,8 @@ console.log(q.last);
 console.log(q.base);
 q.denqueue();
 console.log(q.base);
+
+sdfsdconsole.log('oi')
+
+
+
