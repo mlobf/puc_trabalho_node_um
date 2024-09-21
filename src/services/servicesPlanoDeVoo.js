@@ -1,4 +1,4 @@
-import { PlanoDeVoo } from "./modelPlanoDeVoo.js";
+import { PlanoDeVoo } from "../models/modelPlanoDeVoo.js";
 
 export class ServicoPlanoDeVoo {
   constructor() {

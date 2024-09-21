@@ -129,3 +129,6 @@ export class AeronavePassageiros extends AeronaveComercial {
     return `Aeronave de Passageiros: ${this.prefixo}, velocidade de cruzeiro ${this.velocidadeCruzeiro}, autonomia ${this.autonomia}, nome da compania ${this.nomeCia}, max de passageiros ${this.#maxPassageiros}`;
   }
 }
+
+
+

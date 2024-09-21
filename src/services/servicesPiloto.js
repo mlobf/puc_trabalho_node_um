@@ -1,4 +1,4 @@
-import { Piloto } from "./modelsPiloto.js";
+import { Piloto } from "../models/modelsPiloto.js";
 
 export class ServicoPiloto {
   /*

@@ -2,7 +2,7 @@ import {
   AeronaveComercial,
   AeronaveParticular,
   AeronavePassageiros,
-} from "./modelAeronave.js";
+} from "../models/modelAeronave.js";
 
 class ServicoAeronaves {
   constructor() {
@@ -73,6 +73,7 @@ class ServicoAeronaves {
 export { ServicoAeronaves };
 
 // Teste
+/*
 let sn = new ServicoAeronaves();
 
 let listaBaseParticular = ["Particular", "PTX 8080", 500, 800, "Lito"];
@@ -91,3 +92,4 @@ sn.criarAeronave(listaBasePassageiros);
 
 console.log(sn.listarAeronaves());
 console.log(sn.recuperarAeronave("PTX 8080"));
+*/

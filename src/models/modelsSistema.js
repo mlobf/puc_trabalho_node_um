@@ -10,10 +10,14 @@ import { Aerovias } from "./modelsAerovias";
 
 export class Sistema {
   //Retorna as Aeronaves Cadastradas
-  listarAeronaves() {}
+  listarAeronaves() {
+
+
+
+  }
 
   //Retorna as Atitudes Livres
-  listarAltitudesLivres() {}
+  listarAltitudesLivres() { }
 
   //Retorna um Boolean aprovando ou nao o plano de voo.
   aprovarPlanoDeVoo() {
@@ -25,7 +29,7 @@ export class Sistema {
   }
 
   // Retorna todos os planos de voo Cadastrados.
-  listarPlano() {}
+  listarPlano() { }
 }
 
 //Dar Carga no sistema.i

@@ -124,7 +124,6 @@ export class Aerovias {
                 "-" +
                 String(altitudes[altitude]);
               console.log(input);
-
               //listaSlots.push(input);
             }
           }
@@ -133,7 +132,7 @@ export class Aerovias {
     }
     return listaSlots;
   }
-
+sdfaf
   toStr() {
     let strIdentificador = `O identificador é ${this.identificador}`;
     let strAeroportoOrigem = `O aeroporto de Origem é ${this.aeroportoOrigem}`;

@@ -121,3 +121,9 @@ export class PlanoDeVoo {
     return `O nome do Aerovias é ${strId}, ${strMatriculaPiloto}, ${strIdAerovia}, ${strData}, ${strHorario}, ${strAltitude}, ${strSlots}, ${strCancelado}}`;
   }
 }
+
+
+
+
+
+
