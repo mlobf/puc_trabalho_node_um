@@ -1,4 +1,7 @@
-import { servicoPiloto, servicoAeronaves, servicoAerovias } from "../main.js";
+import { servicoAeronave } from "../main.js";
+import { servicoPiloto } from "../main.js";
+import { servicoAerovia } from "../main.js";
+//import { servicoPlanoDeVoo } from "../main.js";
 
 /*
 Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.000 pés. 
@@ -13,19 +16,12 @@ Check list
 que o tamanho da aerovia);
 (X)• A altitude escolhida tem de ser compatível com o tipo de aeronave;
 (X)• Não pode haver restrições de horário para o tipo de aeronave;
-
 ( )• Os slots de horário necessários têm de estar livres.
-
-
-
-
-
 */
-
 export function filtroRestricaoHorario(PlanoDeVoo) {
     //Aeronaves de carga só podem voar entre a meia noite e as 6:00 da manhã.
     let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
-    let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
+    let aeronave = servicoAeronave.recuperarAeronave(prefixoAeronave);
     let tipoAeronave = aeronave.tipo;
 
     let planoDeVooHorario = PlanoDeVoo.horario;
@@ -44,7 +40,7 @@ export function filtroAltitude(PlanoDeVoo) {
   */
 
     let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
-    let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
+    let aeronave = servicoAeronave.recuperarAeronave(prefixoAeronave);
     let tipoAeronave = aeronave.tipo;
 
     let planoDeVooAltitude = PlanoDeVoo.altitude;
@@ -69,8 +65,8 @@ export function filtroAutonomiaAeronave(PlanoDeVoo) {
     let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
     let idAerovia = PlanoDeVoo.idAerovia;
 
-    let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
-    let aerovia = servicoAerovias.recuperarAerovia(idAerovia);
+    let aeronave = servicoAeronave.recuperarAeronave(prefixoAeronave);
+    let aerovia = servicoAerovia.recuperarAerovia(idAerovia);
 
     let automiaSeguranca = aerovia.tamanhoAerovia * 1.1;
     let aeronaveAutonomia = aeronave.autonomia;

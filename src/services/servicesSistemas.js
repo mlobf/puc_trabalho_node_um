@@ -1,31 +1,27 @@
-import { PlanoDeVoo } from "../models/modelPlanoDeVoo.js";
+//Aprovar plano de voo
+import { ServicoPiloto } from "./services/servicesPiloto.js";
+//Regras de negocio.
+//
+//
+//
+// Aeronaves comerciais de passageiro só podem voar acima de 28.000 pés.
+// Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.000 pés.
+// Aeronaves de carga só podem voar entre a meia noite e as 6:00 da manhã.
 
-export class ServicoSistemas {
-    constructor() {
-        this.base = new Map();
-    }
+// A aeronave tem que ter autonomia 10% superior a exigida no percurso.
+//
+export function testeApprovePlanoDeVoo(planodeDeVoo) {
+    // A licença do Piloto tem que estar Ativa
+    let pilotoLicenca = planodeVoo.matriculaPiloto;
+    console.log(pilotoLicenca);
 
-    criarPlanoDeVoo(listaDeRequisitos) {
-        const [identificador, ...resto] = listaDeRequisitos;
-        this.base.set(identificador, new PlanoDeVoo(identificador, ...resto)); // Usa o identificador como chave
-    }
-
-    listarPlanoDeVoos() {
-        return Array.from(this.base.values()).toString(); // Retornar todos os planos de voo
-    }
-
-    recuperarPlanoDeVoos(identificador) {
-        return this.base.get(identificador); // Recuperar plano de voo por identificador
-    }
-
-    atualizarPlanoDeVoo(identificador, novosDados) {
-        if (this.base.has(identificador)) {
-            let aerovia = this.base.get(identificador);
-            Object.assign(aerovia, novosDados); // Atualiza os dados da plano de voo
-        }
-    }
-
-    deletarPlanoDeVoo(identificador) {
-        this.base.delete(identificador); // Remover plano do voo do Map
-    }
+    console.log(planodeDeVoo.toString());
+    console.log(planodeDeVoo[0]);
+    return true;
 }
+//
+//
+//
+//Listar Aerovias
+//Listar Altitudes Livres
+//Listar Plano de Voo

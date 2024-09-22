@@ -2,14 +2,22 @@ import { ServicoAeronaves } from "./services/servicesAeronaves.js";
 import { ServicoAerovias } from "./services/servicesAerovias.js";
 import { ServicoPiloto } from "./services/servicesPiloto.js";
 import { ServicoPlanodeVoo } from "./services/servicesPlanoDeVoo.js";
-//import { ServicoSistemas } from "./services/servicesSistemas.js";
+import {
+    filtroAltitude,
+    filtroHabilitacao,
+    filtroRestricaoHorario,
+    filtroAutonomiaAeronave,
+    filtroAeronavePlanoDevoo,
+} from "./utils/aeronaves.js";
+
+//import { testeApprovePlanoDeVoo } from "./services/servicesSistemas.js";
 
 // Instanciar os serviços
-const servicoAeronave = new ServicoAeronaves();
-const servicoAerovia = new ServicoAerovias();
-const servicoPiloto = new ServicoPiloto();
-//const servicoSistema = new ServicoSistemas();
-const servicoPlanoDeVoo = new ServicoPlanodeVoo();
+export const servicoAeronave = new ServicoAeronaves();
+export const servicoAerovia = new ServicoAerovias();
+export const servicoPiloto = new ServicoPiloto();
+export const servicoPlanoDeVoo = new ServicoPlanodeVoo();
+
 // Definindo Payload para alguns servicos.
 //Primeiro Aerovias
 let payloadAerovia0 = ["POA-GRU", "POA", "GRU", 1000];
@@ -82,9 +90,10 @@ let payloadAeronaveParticular2 = [
 //Plano de Voo
 let payloadPlanoDeVooCarga0 = [
     "ABC123", // #id; // Identificador da Plano de Voo
-    "808080", // #matriculaPiloto; // Prefixo de identificação do Piloto Responsavel Pelo Plano de Voo
+    //"ABC123", // #id; // Identificador da Plano de Voo
+    "001", // #matriculaPiloto; // Prefixo de identificação do Piloto Responsavel Pelo Plano de Voo
     "PTX 8082", //#prefixoAeronave; // Prefixo de identificacao da Aeronave
-    "GRU-MAU", //#idAerovia; // Identificador da Aerovia utilizado no plano de voo.
+    "POA-GRU", //#idAerovia; // Identificador da Aerovia utilizado no plano de voo.
     "26/11/1981", //#data; // Data usado durante o curso do voo.
     "5:45", //#horario; // Data usado durante o curso do voo.
     29001, //#altitude; // altitude sugerida no plano de voo.
@@ -119,3 +128,13 @@ servicoAeronave.criarAeronave(payloadAeronaveCarga3);
 //Quarto PlanoDeVoo
 servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVooCarga0);
 //-----------------------------------------------------------------------------
+//Recuperando os arquivos criados.
+//console.log(servicoAerovia.listarAerovias());
+//console.log(servicoPiloto.listarPilotos());
+//console.log(servicoAeronave.listarAeronaves());
+let testeApprove = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC123");
+console.log(filtroHabilitacao(testeApprove));
+console.log(filtroRestricaoHorario(testeApprove));
+console.log(filtroAltitude(testeApprove));
+console.log(filtroAutonomiaAeronave(testeApprove));
+console.log(filtroAeronavePlanoDevoo(testeApprove));
