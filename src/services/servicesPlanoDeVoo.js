@@ -1,46 +1,31 @@
 import { PlanoDeVoo } from "../models/modelPlanoDeVoo.js";
 
-export class ServicoPlanoDeVoo {
+export class ServicoPlanodeVoo {
   constructor() {
     this.base = new Map();
   }
 
   criarPlanoDeVoo(listaDeRequisitos) {
-    const [id, ...resto] = listaDeRequisitos;
-    this.base.set(id, new PlanoDeVoo(id, ...resto)); // Usa o identificador como chave
+    const [identificador, ...resto] = listaDeRequisitos;
+    this.base.set(identificador, new PlanoDeVoo(identificador, ...resto)); // Usa o identificador como chave
   }
 
-  listarPlanodeVoos() {
-    return Array.from(this.base.values()).toString(); // Retornar todas os planos de voo
+  listarPlanoDeVoos() {
+    return Array.from(this.base.values()).toString(); // Retornar todos os planos de voo
   }
 
-  recuperarPlanoDeVoo(id) {
-    return this.base.get(id); // Recuperar plano de voo por meio do id
+  recuperarPlanoDeVoos(identificador) {
+    return this.base.get(identificador); // Recuperar plano de voo por identificador
   }
 
-  atualizarPlanoDeVoo(id, novosDados) {
-    if (this.base.has(id)) {
-      let planoDeVoo = this.base.get(id);
-      Object.assign(id, novosDados); // Atualiza os dados do plano de voo por meio do id
+  atualizarPlanoDeVoo(identificador, novosDados) {
+    if (this.base.has(identificador)) {
+      let aerovia = this.base.get(identificador);
+      Object.assign(aerovia, novosDados); // Atualiza os dados da plano de voo
     }
   }
 
-  deletarPlanoDeVoo(id) {
-    this.base.delete(id); // Remover id do Map
+  deletarPlanoDeVoo(identificador) {
+    this.base.delete(identificador); // Remover plano do voo do Map
   }
 }
-
-let payload = [
-  "3023",
-  "kjdfskjfks",
-  "irwfjksjdf",
-  "26/11/24",
-  "10:25",
-  25000,
-  3,
-  false,
-];
-
-let spdv = new ServicoPlanoDeVoo();
-spdv.criarPlanoDeVoo(payload);
-console.log(spdv.recuperarPlanoDeVoo("3023").toStr());

@@ -2,13 +2,21 @@ import {
   AeronaveComercial,
   AeronaveParticular,
   AeronavePassageiros,
+<<<<<<< HEAD:src/services/servicesAeronaves.js
 } from "../models/modelAeronave.js";
+=======
+  AeronaveCarga,
+} from "./modelAeronave.js";
+>>>>>>> c84dcb741afb46f1124cb3327d1250beffd16ae8:src/models/modelsServicoAeronaves.js
 
-class ServicoAeronaves {
+export class ServicoAeronaves {
+  #base; // Mapa privado para armazenar aeronaves
+
   constructor() {
-    this.base = new Map(); // Usar o prefixo como chave única
+    this.#base = new Map(); // Usar o prefixo como chave única
   }
 
+  // Método público para criar uma nova aeronave
   criarAeronave(listaRequisitos) {
     const [tipo, prefixo, velocidadeCruzeiro, autonomia, ...resto] =
       listaRequisitos;
@@ -42,33 +50,48 @@ class ServicoAeronaves {
         autonomia,
         nomeCia
       );
+    } else if (tipo === "Carga") {
+      const [nomeCia, maxCarga] = resto;
+      aeronave = new AeronaveCarga(
+        tipo,
+        prefixo,
+        velocidadeCruzeiro,
+        autonomia,
+        nomeCia,
+        maxCarga
+      );
     }
 
     // Armazenar a aeronave no Map com o prefixo como chave
     if (aeronave) {
-      this.base.set(prefixo, aeronave);
+      this.#base.set(prefixo, aeronave);
     }
   }
 
+  // Método público para recuperar uma aeronave pelo prefixo
   recuperarAeronave(prefixo) {
-    return this.base.get(prefixo); // Recuperar aeronave por prefixo
+    return this.#base.get(prefixo); // Recuperar aeronave por prefixocatch (error) {}
   }
 
+  // Método público para atualizar uma aeronave
   atualizarAeronave(prefixo, novosDados) {
-    if (this.base.has(prefixo)) {
-      let aeronave = this.base.get(prefixo);
+    if (this.#base.has(prefixo)) {
+      let aeronave = this.#base.get(prefixo);
       Object.assign(aeronave, novosDados); // Atualiza os dados da aeronave
     }
   }
 
+  // Método público para deletar uma aeronave pelo prefixo
   deletarAeronave(prefixo) {
-    this.base.delete(prefixo); // Remover aeronave do Map
+    this.#base.delete(prefixo); // Remover aeronave do Map
   }
 
+  // Método público para listar todas as aeronaves
   listarAeronaves() {
-    return Array.from(this.base.values()).toString(); // Retornar todas as aeronaves
+    return Array.from(this.#base.values()).toString(); // Retornar todas as aeronaves
   }
 }
+<<<<<<< HEAD:src/services/servicesAeronaves.js
 
 export { ServicoAeronaves };
 
@@ -93,3 +116,5 @@ sn.criarAeronave(listaBasePassageiros);
 console.log(sn.listarAeronaves());
 console.log(sn.recuperarAeronave("PTX 8080"));
 */
+=======
+>>>>>>> c84dcb741afb46f1124cb3327d1250beffd16ae8:src/models/modelsServicoAeronaves.js

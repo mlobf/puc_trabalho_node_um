@@ -5,13 +5,13 @@ export class Piloto {
     nome, 
     e estado de sua habilitação (ativo/inativo). 
     */
-  #nome;
   #matricula;
+  #nome;
   #habilitacaoAtiva;
 
-  constructor(nome, matricula, habilitacaoAtiva) {
-    this.#nome = nome;
+  constructor(matricula, nome, habilitacaoAtiva) {
     this.#matricula = matricula;
+    this.#nome = nome;
     this.#habilitacaoAtiva = habilitacaoAtiva;
   }
 
@@ -37,10 +37,10 @@ export class Piloto {
     this.#habilitacaoAtiva = newHabilitacaoAtiva;
   }
   toString() {
-    let pn = `O nome do piloto é ${this.#nome} `;
     let pm = `A Matricula do piloto é ${this.#matricula} `;
+    let pn = `O nome do piloto é ${this.#nome} `;
     let ph = `A Situacao da habilitacao do piloto é ${this.#habilitacaoAtiva} `;
 
-    return pn + pm + ph;
+    return `\n ${pm} + ${pn} + ${ph}`;
   }
 }

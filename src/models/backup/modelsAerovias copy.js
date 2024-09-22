@@ -1,25 +1,39 @@
 export class Aerovias {
   /*
-    Classe Aerovias
+    Aerovias
 
-    Esta classe representa uma aerovia e controla a ocupação por slots de tempo, altitudes e datas.
+    Sobre cada aerovia é necessário armazenar um 
+    -identificador (string), 
+    -o aeroporto de origem, 
+    -o aeroporto de destino e o 
+    -tamanho da aerovia (em quilômetros). 
+    --------------------------------------------------------------------------------------------------------------
+    Por simplicidade iremos assumir que as aerovias possuem sentido único 
+    (neste caso para que se possa ir e voltar entre Porto Alegre e Florianópolis serão necessárias duas aerovias: 
+    POA-FLO e FLO-POA).
 
-    Atributos:
-      - #identificador: Identifica a aerovia (string).
-      - #aeroportoOrigem: O aeroporto de origem da aerovia.
-      - #aeroportoDestino: O aeroporto de destino da aerovia.
-      - #tamanhoAerovia: O tamanho da aerovia em quilômetros.
+    Como já foi visto no enunciado geral, as aerovias são divididas em altitudes. Por simplicidade
+    iremos assumir que todas as aerovias são divididas em 10 altitudes começando em 25.000 pés
+    até 35.000 pés.
 
-    Observação:
-    - Por simplicidade, assume-se que as aerovias possuem sentido único.
-    - A ocupação de uma aerovia é feita por slots de hora cheia e por faixas de altitude.
-  */
+    A ocupação de cada aerovia se dá por slot de tempo. Por simplicidade vamos assumir slots de
+    hora cheia. Para saber quantos slots de tempo uma aeronave necessita para percorrer uma
+    aerovia basta dividir o tamanho da aerovia pela velocidade de cruzeiro da aeronave.
 
-  // Definindo atributos privados com #
-  #identificador;
-  #aeroportoOrigem;
-  #aeroportoDestino;
-  #tamanhoAerovia;
+    Exemplo:
+    Aerovia: POA-RJ, 1.000Km
+    Velocidade de cruzeiro da aeronave: 800Km/h
+
+    Tempo de viagem = 1000 / 800 → 1,25 horas o que equivale a 75 minutos ou 1h:15min.
+
+    Como estamos assumindo slots de hora cheia, mesmo que a aeronave utilize apenas 15 minutos
+    do segundo slot este voo irá ocupar 2 slots de horário. Então se o voo estiver previsto para as
+    15:00hs, iremos ocupar os slots das 15:00 e o das 16:00. Se o voo estiver previsto para as 15:52,
+    iremos ocupar os slots das 15:00hs, 16:00hs e 17:00hs.
+
+    Para que o controle de ocupação das aerovias possa ser feito, será necessário manter a lista das
+    altitudes e slots de cada aerovia ocupados em cada dia (data).
+   */
 
   constructor(
     identificador,
@@ -27,49 +41,13 @@ export class Aerovias {
     aeroportoDestino,
     tamanhoAerovia
   ) {
-    this.#identificador = identificador;
-    this.#aeroportoOrigem = aeroportoOrigem;
-    this.#aeroportoDestino = aeroportoDestino;
-    this.#tamanhoAerovia = tamanhoAerovia;
+    this.identificador = identificador;
+    this.aeroportoOrigem = aeroportoOrigem;
+    this.aeroportoDestina = aeroportoDestino;
+    this.tamanhoAerovia = tamanhoAerovia;
   }
 
-  // Getters e Setters para acessar os atributos privados
-
-  get identificador() {
-    return this.#identificador;
-  }
-
-  set identificador(valor) {
-    this.#identificador = valor;
-  }
-
-  get aeroportoOrigem() {
-    return this.#aeroportoOrigem;
-  }
-
-  set aeroportoOrigem(valor) {
-    this.#aeroportoOrigem = valor;
-  }
-
-  get aeroportoDestino() {
-    return this.#aeroportoDestino;
-  }
-
-  set aeroportoDestino(valor) {
-    this.#aeroportoDestino = valor;
-  }
-
-  get tamanhoAerovia() {
-    return this.#tamanhoAerovia;
-  }
-
-  set tamanhoAerovia(valor) {
-    this.#tamanhoAerovia = valor;
-  }
-
-  // Métodos para gerar ranges de anos, dias, meses, horas e altitudes
-  /*
-
+  // Scopo de geracao do controle de slots.
   gerarRangeDeAnos() {
     let listaRangeAnos = [];
     for (let i = 2024; i < 2044; i++) {
@@ -109,17 +87,18 @@ export class Aerovias {
     }
     return listaRangeAltitude;
   }
-  // Método para gerar todos os slots de tempo e altitude
-  
+
+  // Gerar a lista de números de 1 a 365
+
   gerarTodosSlots() {
     let listaSlots = [];
-    
+
     let anos = this.gerarRangeDeAnos();
     let meses = this.gerarMesAno();
     let dias = this.gerarDiasAno();
     let horas = this.gerarHorasDia();
     let altitudes = this.gerarRangeAltitude();
-    
+
     for (let ano = 0; ano < anos.length; ano++) {
       for (let mes = 0; mes < meses.length; mes++) {
         for (let dia = 0; dia < dias.length; dia++) {
@@ -136,10 +115,7 @@ export class Aerovias {
                 "-" +
                 String(altitudes[altitude]);
               console.log(input);
-<<<<<<< HEAD
-=======
-              
->>>>>>> c84dcb741afb46f1124cb3327d1250beffd16ae8
+
               //listaSlots.push(input);
             }
           }
@@ -148,8 +124,7 @@ export class Aerovias {
     }
     return listaSlots;
   }
-<<<<<<< HEAD
-sdfaf
+
   toStr() {
     let strIdentificador = `O identificador é ${this.identificador}`;
     let strAeroportoOrigem = `O aeroporto de Origem é ${this.aeroportoOrigem}`;
@@ -162,20 +137,3 @@ sdfaf
 let poaSp = new Aerovias("POA-GRU", "POA", "GRU", 1000);
 //console.log(poaSp.gerarTodosSlots());
 console.log(Date.now());
-=======
-  */
-
-  // Método para retornar uma string com os detalhes da aerovia
-
-  toString() {
-    let strIdentificador = `O identificador é ${this.#identificador}`;
-    let strAeroportoOrigem = `O aeroporto de Origem é ${this.#aeroportoOrigem}`;
-    let strAeroportoDestino = `O aeroporto de Destino é ${this.#aeroportoDestino}`;
-    let strTamanhoAerovia = `O tamanho da Aerovia é de ${this.#tamanhoAerovia} km`;
-
-    return `AEROVIA \n ${strIdentificador},\n ${strAeroportoOrigem},\n ${strAeroportoDestino},\n ${strTamanhoAerovia}\n`;
-  }
-}
-
-//let poaSp = new Aerovias("POA-GRU", "POA", "GRU", 1000);
->>>>>>> c84dcb741afb46f1124cb3327d1250beffd16ae8

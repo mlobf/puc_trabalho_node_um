@@ -20,6 +20,7 @@ export class ServicoPiloto {
   }
 
   recuperarPiloto(matricula) {
+    //return this.base.get(identificador).toString(); // Recuperar aerovia por identificador
     return this.base.get(matricula); // Recuperar piloto por identificador
   }
 
@@ -35,25 +36,6 @@ export class ServicoPiloto {
   }
 
   toStr() {
-    return `O nome do Serviço Piloto é ${this.nome}`;
+    return `O nome do Serviço Piloto é ${this.nome}\n`;
   }
 }
-
-// Testes
-let sp = new ServicoPiloto();
-let payload = ["marcos", "odsdifdsf3232", true];
-let payload1 = ["maria", "odsdifdsf3231", true];
-let payload2 = ["lis", "odsdifdsf3230", true];
-let payload3 = ["carolina", "odsdifdsf3239", true];
-let payload4 = ["eliza", "odsdifdsf3we2", true];
-let payload5 = ["conceicao", "odsdifddssf3232", true];
-let payload6 = ["Gisela", "odsdifdsf32sd32", true];
-
-sp.criarPiloto(payload);
-sp.criarPiloto(payload1);
-sp.criarPiloto(payload2);
-sp.criarPiloto(payload3);
-sp.criarPiloto(payload4);
-sp.criarPiloto(payload5);
-sp.criarPiloto(payload6);
-console.log(sp.listarPilotos());

@@ -1,4 +1,4 @@
-import { Aerovias } from "../models/modelsAerovias.js";
+import { Aerovias } from "../modelsAerovias.js";
 
 export class ServicoAerovias {
   constructor() {
@@ -9,9 +9,9 @@ export class ServicoAerovias {
     const [identificador, ...resto] = listaDeRequisitos;
     this.base.set(identificador, new Aerovias(identificador, ...resto)); // Usa o identificador como chave
   }
-  //return Array.from(this.#base.values()).toString(); // Retornar todas as aeronaves
+
   listarAerovias() {
-    return Array.from(this.base.values()).toString(); // Retornar todas as aerovias
+    return Array.from(this.base.values()); // Retornar todas as aerovias
   }
 
   recuperarAerovia(identificador) {
@@ -29,7 +29,17 @@ export class ServicoAerovias {
     this.base.delete(identificador); // Remover aerovia do Map
   }
 }
-<<<<<<< HEAD:src/services/servicesAerovias.js
 
-=======
->>>>>>> c84dcb741afb46f1124cb3327d1250beffd16ae8:src/models/modelsServicoAerovias.js
+let sn = new ServicoAerovias();
+
+let payload = ["POA-GRU", "POA", "GRU", 1000];
+let payload1 = ["RJU-GRU", "POA", "GRU", 1000];
+let payload2 = ["PPI-GRU", "POA", "GRU", 1000];
+let payload3 = ["MAU-GRU", "POA", "GRU", 1000];
+
+sn.criarAerovia(payload);
+sn.criarAerovia(payload1);
+sn.criarAerovia(payload2);
+sn.criarAerovia(payload3);
+
+console.log(sn.listarAerovias()); // Deve listar todas as aerovias

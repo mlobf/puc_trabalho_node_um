@@ -1,0 +1,3 @@
+Para o programa funcionar é so rodar dentro da pasta src:
+
+    node main.js
