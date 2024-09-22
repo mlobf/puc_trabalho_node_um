@@ -23,11 +23,14 @@ export function filtroRestricaoHorario(PlanoDeVoo) {
     let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
     let aeronave = servicoAeronave.recuperarAeronave(prefixoAeronave);
     let tipoAeronave = aeronave.tipo;
-
     let planoDeVooHorario = PlanoDeVoo.horario;
     let hora = Number(planoDeVooHorario.split(":")[0]);
 
     if (tipoAeronave === "Carga" && hora > 0 && hora < 6) {
+        return true;
+    }
+
+    if (tipoAeronave !== "Carga") {
         return true;
     }
     return false;
@@ -55,6 +58,8 @@ export function filtroAltitude(PlanoDeVoo) {
     if (tipoAeronave == "Passageiros" && planoDeVooAltitude > 28000)
         return true;
 
+    if (tipoAeronave == "Carga") return true;
+
     return false;
 }
 
@@ -78,6 +83,8 @@ export function filtroAutonomiaAeronave(PlanoDeVoo) {
 }
 
 export function filtroHabilitacao(PlanoDeVoo) {
+    // Somente Pilotos Habilitados devem operar as
+    // aeronaves.
     let piloto = servicoPiloto.recuperarPiloto(PlanoDeVoo.matriculaPiloto);
     if (piloto.habilitacaoAtiva) {
         return true;
@@ -85,21 +92,23 @@ export function filtroHabilitacao(PlanoDeVoo) {
     return false;
 }
 
-export function filtroAeronavePlanoDevoo(Aeronave, PlanoDeVoo) {
-    if (
-        Aeronave.tipo === "Particular" &&
-        PlanoDeVoo.altitude < 27000 &&
-        PlanoDeVoo.altitude > 25000
-    ) {
-        console.log("Dentro de tipo Particular");
-        return true;
-    } else if (Aeronave.tipo === "Passageiro" && PlanoDeVoo.altitude > 28000) {
-        console.log("Dentro de tipo passageiro");
-        return true;
-    } else if (Aeronave.tipo === "Carga" && PlanoDeVoo.altitude > 28000) {
-        console.log("Dentro de tipo carga");
-        return true;
-    }
-    console.log("rodou o false");
-    return false;
+export function numeroSlotsUsaNaAerovia(PlanoDeVoo) {
+    // Pegar a velocidade media da aeronave
+    // Pegar o tamanho da aerovia
+    // Calcular o numero de slots usados para realizar a viagem
+    //  se der quebrado é add mais um slot.Arredonda para cima.
+
+    let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
+    let idAerovia = PlanoDeVoo.idAerovia;
+
+    let aeronave = servicoAeronave.recuperarAeronave(prefixoAeronave);
+    let aerovia = servicoAerovia.recuperarAerovia(idAerovia);
+
+    let tamanhoAerovia = aerovia.tamanhoAerovia;
+
+    let aeronaveVelocidadeCruzeiro = aeronave.velocidadeCruzeiro;
+
+    let numeroSlots = Math.ceil(tamanhoAerovia / aeronaveVelocidadeCruzeiro);
+
+    return numeroSlots;
 }

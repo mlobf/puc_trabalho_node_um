@@ -7,7 +7,7 @@ import {
     filtroHabilitacao,
     filtroRestricaoHorario,
     filtroAutonomiaAeronave,
-    filtroAeronavePlanoDevoo,
+    numeroSlotsUsaNaAerovia,
 } from "./utils/aeronaves.js";
 
 //import { testeApprovePlanoDeVoo } from "./services/servicesSistemas.js";
@@ -20,7 +20,7 @@ export const servicoPlanoDeVoo = new ServicoPlanodeVoo();
 
 // Definindo Payload para alguns servicos.
 //Primeiro Aerovias
-let payloadAerovia0 = ["POA-GRU", "POA", "GRU", 1000];
+let payloadAerovia0 = ["POA-GRU", "POA", "GRU", 1775];
 let payloadAerovia1 = ["RJU-GRU", "RJU", "GRU", 1000];
 let payloadAerovia2 = ["PPI-GRU", "PPI", "GRU", 1000];
 let payloadAerovia3 = ["MAU-GRU", "MAU", "GRU", 1000];
@@ -90,7 +90,6 @@ let payloadAeronaveParticular2 = [
 //Plano de Voo
 let payloadPlanoDeVooCarga0 = [
     "ABC123", // #id; // Identificador da Plano de Voo
-    //"ABC123", // #id; // Identificador da Plano de Voo
     "001", // #matriculaPiloto; // Prefixo de identificação do Piloto Responsavel Pelo Plano de Voo
     "PTX 8082", //#prefixoAeronave; // Prefixo de identificacao da Aeronave
     "POA-GRU", //#idAerovia; // Identificador da Aerovia utilizado no plano de voo.
@@ -133,8 +132,10 @@ servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVooCarga0);
 //console.log(servicoPiloto.listarPilotos());
 //console.log(servicoAeronave.listarAeronaves());
 let testeApprove = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC123");
-console.log(filtroHabilitacao(testeApprove));
-console.log(filtroRestricaoHorario(testeApprove));
-console.log(filtroAltitude(testeApprove));
-console.log(filtroAutonomiaAeronave(testeApprove));
-console.log(filtroAeronavePlanoDevoo(testeApprove));
+//console.log("filtroHabilitacao", filtroHabilitacao(testeApprove));
+//console.log("filtroRestricaoHorario", filtroRestricaoHorario(testeApprove));
+//console.log("filtroAltitude", filtroAltitude(testeApprove));
+console.log("filtroAutonomiaAeronave", filtroAutonomiaAeronave(testeApprove));
+//console.log("filtroAeronavePlanoDevoo", filtroAeronavePlanoDevoo(testeApprove));
+//
+console.log(numeroSlotsUsaNaAerovia(testeApprove));
