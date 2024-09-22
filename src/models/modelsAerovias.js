@@ -178,4 +178,3 @@ console.log(Date.now());
 }
 
 //let poaSp = new Aerovias("POA-GRU", "POA", "GRU", 1000);
->>>>>>> c84dcb741afb46f1124cb3327d1250beffd16ae8

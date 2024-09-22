@@ -25,161 +25,165 @@ Aeronaves de carga só podem voar entre a meia noite e as 6:00 da manhã.
 // Classe base que representa uma aeronave
 
 export class Aeronave {
-  #tipo; // Armazena o tipo da aeronave
-  #prefixo; // Prefixo de identificação da aeronave
-  #velocidadeCruzeiro; // Velocidade de cruzeiro da aeronave em km/h
-  #autonomia; // Autonomia da aeronave em km
+    #tipo; // Armazena o tipo da aeronave
+    #prefixo; // Prefixo de identificação da aeronave
+    #velocidadeCruzeiro; // Velocidade de cruzeiro da aeronave em km/h
+    #autonomia; // Autonomia da aeronave em km
 
-  // Construtor que inicializa os atributos básicos da aeronave
-  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia) {
-    this.#tipo = tipo;
-    this.#prefixo = prefixo;
-    this.#velocidadeCruzeiro = velocidadeCruzeiro;
-    this.#autonomia = autonomia;
-  }
+    // Construtor que inicializa os atributos básicos da aeronave
+    constructor(tipo, prefixo, velocidadeCruzeiro, autonomia) {
+        this.#tipo = tipo;
+        this.#prefixo = prefixo;
+        this.#velocidadeCruzeiro = velocidadeCruzeiro;
+        this.#autonomia = autonomia;
+    }
 
-  // Getters e setters para acessar e modificar os atributos privados
-  get tipo() {
-    return this.#tipo;
-  }
-  get prefixo() {
-    return this.#prefixo;
-  }
-  get velocidadeCruzeiro() {
-    return this.#velocidadeCruzeiro;
-  }
-  get autonomia() {
-    return this.#autonomia;
-  }
+    // Getters e setters para acessar e modificar os atributos privados
+    get tipo() {
+        return this.#tipo;
+    }
+    get prefixo() {
+        return this.#prefixo;
+    }
+    get velocidadeCruzeiro() {
+        return this.#velocidadeCruzeiro;
+    }
+    get autonomia() {
+        return this.#autonomia;
+    }
 
-  set tipo(newTipo) {
-    this.#tipo = newTipo;
-  }
+    set tipo(newTipo) {
+        this.#tipo = newTipo;
+    }
 
-  set prefixo(newPrefixo) {
-    this.#prefixo = newPrefixo;
-  }
+    set prefixo(newPrefixo) {
+        this.#prefixo = newPrefixo;
+    }
 
-  set velocidadeCruzeiro(newVelocidadeCruzeiro) {
-    this.#velocidadeCruzeiro = newVelocidadeCruzeiro;
-  }
+    set velocidadeCruzeiro(newVelocidadeCruzeiro) {
+        this.#velocidadeCruzeiro = newVelocidadeCruzeiro;
+    }
 
-  set autonomia(newAutonomia) {
-    this.#autonomia = newAutonomia;
-  }
+    set autonomia(newAutonomia) {
+        this.#autonomia = newAutonomia;
+    }
 
-  // Método que retorna uma string com os detalhes da aeronave
-  toString() {
-    return `Aeronave :\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia}\n`;
-  }
+    // Método que retorna uma string com os detalhes da aeronave
+    toString() {
+        return `Aeronave :\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia}\n`;
+    }
 }
 
 // Classe que representa uma aeronave particular, herdando de Aeronave
 export class AeronaveParticular extends Aeronave {
-  #respManutencao; // Armazena o responsável pela manutenção da aeronave
+    #respManutencao; // Armazena o responsável pela manutenção da aeronave
 
-  // Construtor que inicializa os atributos da aeronave particular
-  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, respManutencao) {
-    super(tipo, prefixo, velocidadeCruzeiro, autonomia); // Chama o construtor da classe pai
-    this.#respManutencao = respManutencao;
-  }
+    // Construtor que inicializa os atributos da aeronave particular
+    constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, respManutencao) {
+        super(tipo, prefixo, velocidadeCruzeiro, autonomia); // Chama o construtor da classe pai
+        this.#respManutencao = respManutencao;
+    }
 
-  // Getter e setter para acessar e modificar o responsável pela manutenção
-  get respManutencao() {
-    return this.#respManutencao;
-  }
+    // Getter e setter para acessar e modificar o responsável pela manutenção
+    get respManutencao() {
+        return this.#respManutencao;
+    }
 
-  set respManutencao(newRespManutencao) {
-    this.#respManutencao = newRespManutencao;
-  }
+    set respManutencao(newRespManutencao) {
+        this.#respManutencao = newRespManutencao;
+    }
 
-  // Método que retorna uma string com os detalhes da aeronave particular
-  toString() {
-    return `Aeronave Particular:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n responsável pela manutenção ${this.#respManutencao}, \n`;
-  }
+    // Método que retorna uma string com os detalhes da aeronave particular
+    toString() {
+        return `Aeronave Particular:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n responsável pela manutenção ${this.#respManutencao}, \n`;
+    }
 }
 
 // Classe que representa uma aeronave comercial, herdando de Aeronave
 export class AeronaveComercial extends Aeronave {
-  #nomeCia; // Armazena o nome da companhia aérea
+    #nomeCia; // Armazena o nome da companhia aérea
 
-  // Construtor que inicializa os atributos da aeronave comercial
-  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia) {
-    super(tipo, prefixo, velocidadeCruzeiro, autonomia); // Chama o construtor da classe pai
-    this.#nomeCia = nomeCia;
-  }
+    // Construtor que inicializa os atributos da aeronave comercial
+    constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia) {
+        super(tipo, prefixo, velocidadeCruzeiro, autonomia); // Chama o construtor da classe pai
+        this.#nomeCia = nomeCia;
+    }
 
-  // Getter e setter para acessar e modificar o nome da companhia aérea
-  get nomeCia() {
-    return this.#nomeCia;
-  }
+    // Getter e setter para acessar e modificar o nome da companhia aérea
+    get nomeCia() {
+        return this.#nomeCia;
+    }
 
-  set nomeCia(newNomeCia) {
-    this.#nomeCia = newNomeCia;
-  }
+    set nomeCia(newNomeCia) {
+        this.#nomeCia = newNomeCia;
+    }
 
-  // Método que retorna uma string com os detalhes da aeronave comercial
-  toString() {
-    return `Aeronave Comercial:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia}\n`;
-  }
+    // Método que retorna uma string com os detalhes da aeronave comercial
+    toString() {
+        return `Aeronave Comercial:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia}\n`;
+    }
 }
 
 // Classe que representa uma aeronave de passageiros, herdando de AeronaveComercial
 export class AeronavePassageiros extends AeronaveComercial {
-  #maxPassageiros; // Armazena a quantidade máxima de passageiros
+    #maxPassageiros; // Armazena a quantidade máxima de passageiros
 
-  // Construtor que inicializa os atributos da aeronave de passageiros
-  constructor(
-    tipo,
-    prefixo,
-    velocidadeCruzeiro,
-    autonomia,
-    nomeCia,
-    maxPassageiros
-  ) {
-    super(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia); // Chama o construtor da classe pai
-    this.#maxPassageiros = maxPassageiros;
-  }
+    // Construtor que inicializa os atributos da aeronave de passageiros
+    constructor(
+        tipo,
+        prefixo,
+        velocidadeCruzeiro,
+        autonomia,
+        nomeCia,
+        maxPassageiros
+    ) {
+        super(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia); // Chama o construtor da classe pai
+        this.#maxPassageiros = maxPassageiros;
+    }
 
-  // Getter e setter para acessar e modificar a quantidade máxima de passageiros
-  get maxPassageiros() {
-    return this.#maxPassageiros;
-  }
+    // Getter e setter para acessar e modificar a quantidade máxima de passageiros
+    get maxPassageiros() {
+        return this.#maxPassageiros;
+    }
 
-  set maxPassageiros(newMaxPassageiros) {
-    this.#maxPassageiros = newMaxPassageiros;
-  }
+    set maxPassageiros(newMaxPassageiros) {
+        this.#maxPassageiros = newMaxPassageiros;
+    }
 
-  // Método que retorna uma string com os detalhes da aeronave de passageiros
-  toString() {
-    return `Aeronave de Passageiros:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia},\n máximo de passageiros ${this.#maxPassageiros}\n`;
-  }
+    // Método que retorna uma string com os detalhes da aeronave de passageiros
+    toString() {
+        return `Aeronave de Passageiros:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia},\n máximo de passageiros ${this.#maxPassageiros}\n`;
+    }
 }
 
 // Classe que representa uma aeronave de carga, herdando de AeronaveComercial
 export class AeronaveCarga extends AeronaveComercial {
-  #maxCarga; // Armazena a quantidade máxima de Carga
+    #maxCarga; // Armazena a quantidade máxima de Carga
 
-  // Construtor que inicializa os atributos da aeronave de carga
-  constructor(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia, maxCarga) {
-    super(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia); // Chama o construtor da classe pai
-    this.#maxCarga = maxCarga;
-  }
+    // Construtor que inicializa os atributos da aeronave de carga
+    constructor(
+        tipo,
+        prefixo,
+        velocidadeCruzeiro,
+        autonomia,
+        nomeCia,
+        maxCarga
+    ) {
+        super(tipo, prefixo, velocidadeCruzeiro, autonomia, nomeCia); // Chama o construtor da classe pai
+        this.#maxCarga = maxCarga;
+    }
 
-  // Getter e setter para acessar e modificar a quantidade máxima de carga
-  get maxCarga() {
-    return this.#maxCarga;
-  }
+    // Getter e setter para acessar e modificar a quantidade máxima de carga
+    get maxCarga() {
+        return this.#maxCarga;
+    }
 
-  set maxCarga(newMaxCarga) {
-    this.#maxCarga = newMaxCarga;
-  }
+    set maxCarga(newMaxCarga) {
+        this.#maxCarga = newMaxCarga;
+    }
 
-  // Método que retorna uma string com os detalhes da aeronave de carga
-  toString() {
-    return `Aeronave de Carga:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia},\n máximo de carga ${this.maxCarga}\n`;
-  }
+    // Método que retorna uma string com os detalhes da aeronave de carga
+    toString() {
+        return `Aeronave de Carga:\n ${this.prefixo},\n velocidade de cruzeiro ${this.velocidadeCruzeiro},\n autonomia ${this.autonomia},\n nome da companhia ${this.nomeCia},\n máximo de carga ${this.maxCarga}\n`;
+    }
 }
-
-
-

@@ -1,4 +1,4 @@
-class BaseService {
+export class BaseService {
     constructor() {
         this.base = new Map(); // Usar o prefixo ou identificador como chave única
     }
@@ -28,5 +28,3 @@ class BaseService {
         return Array.from(this.base.values()); // Retornar todos os itens
     }
 }
-
-export { BaseService }

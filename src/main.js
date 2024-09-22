@@ -1,214 +1,121 @@
-<<<<<<< HEAD
-import { ServicoAerovias } from "./services/servicesAerovias.js"
-import { ServicoPiloto } from "./services/servicesPiloto.js"
+import { ServicoAeronaves } from "./services/servicesAeronaves.js";
+import { ServicoAerovias } from "./services/servicesAerovias.js";
+import { ServicoPiloto } from "./services/servicesPiloto.js";
+import { ServicoPlanodeVoo } from "./services/servicesPlanoDeVoo.js";
+//import { ServicoSistemas } from "./services/servicesSistemas.js";
 
-
-
-let sn = new ServicoAerovias();
-
-let payload = ["POA-GRU", "POA", "GRU", 1000];
-let payload1 = ["RJU-GRU", "POA", "GRU", 1000];
-let payload2 = ["PPI-GRU", "POA", "GRU", 1000];
-let payload3 = ["MAU-GRU", "POA", "GRU", 1000];
-
-sn.criarAerovia(payload);
-sn.criarAerovia(payload1);
-sn.criarAerovia(payload2);
-sn.criarAerovia(payload3);
-
-console.log(sn.listarAerovias()); // Deve listar todas as aerovias
-
-=======
-import { ServicoAeronaves } from "./models/modelsServicoAeronaves.js";
-import { ServicoAerovias } from "./models/modelsServicoAerovias.js";
-import { ServicoPiloto } from "./models/modelsServicoPiloto.js";
-import { ServicoPlanodeVoo } from "./models/modelsServicoPlanoDeVoo.js";
-
-import {
-  filtroAeronavePlanoDevoo,
-  filtroAltitude,
-  filtroAutonomiaAeronave,
-  filtroHabilitacao,
-  filtroRestricaoHorario,
-} from "./utils/aeronaves.js";
-
-/*
- */
-//-----------------------------------------------------------------------------
-//---------------------Instanciar os serviços ---------------------------------
-//-----------------------------------------------------------------------------
-export const servicoPiloto = new ServicoPiloto();
-export const servicoAeronaves = new ServicoAeronaves();
-export const servicoAerovias = new ServicoAerovias();
-export const servicoPlanoDeVoo = new ServicoPlanodeVoo();
-//-----------------------------------------------------------------------------
-// Criar Pilotos
-/*
-  #matricula;
-  #nome;
-  #habilitacaoAtiva;
-*/
-let pilotoPayloadAtivo = ["808080", "marcos", true];
-servicoPiloto.criarPiloto(pilotoPayloadAtivo);
-let pilotoAtivo = servicoPiloto.recuperarPiloto("808080");
-
-let pilotoPayloadInativo = ["808081", "Joao", false];
-servicoPiloto.criarPiloto(pilotoPayloadInativo);
-let pilotoInativo = servicoPiloto.recuperarPiloto("808081");
-
-//-----------------------------------------------------------------------------
-//---------------Criando as aeronaves------------------------------------------
-//Gerando os payloads.
-
-//Aeronave Particular
-/*
-tipo, 
-prefixo, 
-velocidadeCruzeiro, 
-autonomia, 
-respManutencao
-*/
-let aeronaveParticularPayload = ["Particular", "PTX 8080", 500, 800, "Lito"];
-// Aeronave Passageiros
-/*
-tipo, 
-prefixo, 
-velocidadeCruzeiro, 
-autonomia, 
-nomeCia, 
-maxPassageiros
-*/
-let aeronavePassageiroPayload = [
-  "Passageiros",
-  "PTX 8081",
-  500,
-  800,
-  "TAM",
-  800,
+// Instanciar os serviços
+const servicoAeronave = new ServicoAeronaves();
+const servicoAerovia = new ServicoAerovias();
+const servicoPiloto = new ServicoPiloto();
+//const servicoSistema = new ServicoSistemas();
+const servicoPlanoDeVoo = new ServicoPlanodeVoo();
+// Definindo Payload para alguns servicos.
+//Primeiro Aerovias
+let payloadAerovia0 = ["POA-GRU", "POA", "GRU", 1000];
+let payloadAerovia1 = ["RJU-GRU", "RJU", "GRU", 1000];
+let payloadAerovia2 = ["PPI-GRU", "PPI", "GRU", 1000];
+let payloadAerovia3 = ["MAU-GRU", "MAU", "GRU", 1000];
+let payloadAerovia4 = ["MAU-TON", "MAU", "TON", 1000];
+let payloadAerovia5 = ["MAU-MON", "MAU", "MON", 1000];
+// Segundo Pilotos
+let payloadPiloto0 = ["001", "Marcos", true];
+let payloadPiloto1 = ["002", "Joao", true];
+let payloadPiloto2 = ["003", "Caio", true];
+let payloadPiloto3 = ["004", "Carlos", true];
+// Terceiro Aeronaves
+// CARGA
+let payloadAeronaveCarga0 = ["Carga", "PTX 8081", 500, 800, "TAM", 8000];
+let payloadAeronaveCarga1 = ["Carga", "PTX 8082", 500, 800, "VARIG", 8000];
+let payloadAeronaveCarga2 = ["Carga", "PTX 8083", 500, 800, "VASP", 8000];
+let payloadAeronaveCarga3 = ["Carga", "PTX 8084", 500, 800, "VASP", 8000];
+// Passageiros
+let payloadAeronavePassageiros = [
+    "Passageiros",
+    "PTX 8084",
+    500,
+    800,
+    "TAM",
+    550,
 ];
-// Aeronave Carga
-/*
-tipo, 
-prefixo, 
-velocidadeCruzeiro, 
-autonomia, 
-nomeCia, 
-maxCarga
-*/
-let aeronaveCargaPayload = ["Carga", "PTX 8082", 500, 800, "VARIG", 1000];
-//-------Criando as aeronaves
-servicoAeronaves.criarAeronave(aeronaveParticularPayload);
-servicoAeronaves.criarAeronave(aeronavePassageiroPayload);
-servicoAeronaves.criarAeronave(aeronaveCargaPayload);
-
-// Criar Aerovia
-/*
-  #identificador;
-  #aeroportoOrigem;
-  #aeroportoDestino;
-  #tamanhoAerovia;
-  */
-
-let aeroviaPayload = ["GRU-MAU", "GRU", "MAU", 1500];
-servicoAerovias.criarAerovia(aeroviaPayload);
-//-----------------------------------------------------------------------------
-//---------------Criando os planos de voo------------------------------------------
-/*
-id,
-matriculaPiloto,
-prefixoAeronave,
-idAerovia,
-data,
-horario,
-altitude,
-slots,
-estaCancelado
- */
-
-let payloadPlanoDeVooParticular = [
-  "ABC121",
-  "808080",
-  "PTX 8080",
-  "PUC-RS",
-  "26/11/1981",
-  "10:45",
-  25001,
-  4,
-  false,
+let payloadAeronavePassageiros1 = [
+    "Passageiros",
+    "PTX 8085",
+    500,
+    800,
+    "VARIG",
+    550,
 ];
-
-let payloadPlanoDeVooPassageiros = [
-  "ABC122",
-  "808080",
-  "PTX 8081",
-  "GRU-MAU",
-  "26/11/1981",
-  "10:45",
-  29001,
-  4,
-  false,
+let payloadAeronavePassageiros2 = [
+    "Passageiros",
+    "PTX 8086",
+    500,
+    800,
+    "VASP",
+    550,
 ];
-
-let payloadPlanoDeVooCarga = [
-  "ABC123",
-  "808080",
-  "PTX 8082",
-  "GRU-MAU",
-  "26/11/1981",
-  "5:45",
-  29001,
-  4,
-  false,
+// Particular
+let payloadAeronaveParticular0 = [
+    "Particular",
+    "PTX 8087",
+    500,
+    800,
+    "TAM",
+    "LITO",
 ];
-
-servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVooParticular);
-servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVooPassageiros);
-servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVooCarga);
-
+let payloadAeronaveParticular1 = [
+    "Particular",
+    "PTX 8088",
+    500,
+    800,
+    "VARIG",
+    "LITO",
+];
+let payloadAeronaveParticular2 = [
+    "Particular",
+    "PTX 8089",
+    500,
+    800,
+    "VASP",
+    "LITO",
+];
+//Plano de Voo
+let payloadPlanoDeVooCarga0 = [
+    "ABC123", // #id; // Identificador da Plano de Voo
+    "808080", // #matriculaPiloto; // Prefixo de identificação do Piloto Responsavel Pelo Plano de Voo
+    "PTX 8082", //#prefixoAeronave; // Prefixo de identificacao da Aeronave
+    "GRU-MAU", //#idAerovia; // Identificador da Aerovia utilizado no plano de voo.
+    "26/11/1981", //#data; // Data usado durante o curso do voo.
+    "5:45", //#horario; // Data usado durante o curso do voo.
+    29001, //#altitude; // altitude sugerida no plano de voo.
+    4, //#slots; // Numero de slots utilizados durante o curso do plano de voo
+    false, //#estaCancelado; // Reflete o Status caso o Plano de Voo Esteja Cancelado
+];
 //-----------------------------------------------------------------------------
-console.log("Inicio do testes da funcao");
+//Criando os objetos por meio de um serviço diretamente relacionado ao objeto
+//Primeiro Aerovia
+servicoAerovia.criarAerovia(payloadAerovia0);
+servicoAerovia.criarAerovia(payloadAerovia1);
+servicoAerovia.criarAerovia(payloadAerovia2);
+servicoAerovia.criarAerovia(payloadAerovia3);
+servicoAerovia.criarAerovia(payloadAerovia4);
+servicoAerovia.criarAerovia(payloadAerovia5);
+//Segundo Piloto
+servicoPiloto.criarPiloto(payloadPiloto0);
+servicoPiloto.criarPiloto(payloadPiloto1);
+servicoPiloto.criarPiloto(payloadPiloto2);
+servicoPiloto.criarPiloto(payloadPiloto3);
+//Terceiro Aeronave
+servicoAeronave.criarAeronave(payloadAeronaveParticular0);
+servicoAeronave.criarAeronave(payloadAeronaveParticular1);
+servicoAeronave.criarAeronave(payloadAeronaveParticular2);
+servicoAeronave.criarAeronave(payloadAeronavePassageiros);
+servicoAeronave.criarAeronave(payloadAeronavePassageiros1);
+servicoAeronave.criarAeronave(payloadAeronavePassageiros2);
+servicoAeronave.criarAeronave(payloadAeronaveCarga0);
+servicoAeronave.criarAeronave(payloadAeronaveCarga1);
+servicoAeronave.criarAeronave(payloadAeronaveCarga2);
+servicoAeronave.criarAeronave(payloadAeronaveCarga3);
+//Quarto PlanoDeVoo
+servicoPlanoDeVoo.criarPlanoDeVoo(payloadPlanoDeVooCarga0);
 //-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-// Recuperando os planos de voo
-console.log("recuperando os planos de voo");
-let planoParticular = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC121");
-let planoPassageiros = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC122");
-let planoCarga = servicoPlanoDeVoo.recuperarPlanoDeVoos("ABC123");
-
-console.log(planoParticular.toString());
-console.log(planoPassageiros.toString());
-console.log(planoCarga.toString());
-
-//-----------------------------------------------------------------------------
-//---------Testando os filtros-------------------------------------------------
-//-----------------------------------------------------------------------------
-console.log("Testando os filtros");
-
-console.log("==================================================");
-console.log(
-  "filtro habilitacao particular",
-  filtroHabilitacao(planoParticular)
-);
-console.log(
-  "filtro habilitacao passageiros",
-  filtroHabilitacao(planoPassageiros)
-);
-console.log(
-  "filtro habilitacao carga           . ",
-  filtroHabilitacao(planoCarga)
-);
-
-//console.log("==================================================");
-//console.log("filtro autonomia aeronave", filtroAutonomiaAeronave(plano));
-//console.log("==================================================");
-//console.log(
-//  "filtro altitude aeronave plano de voo plano",
-//  filtroAltitude(plano)
-//);
-//console.log(
-//  "filtro altitude aeronave plano de voo plano1 ",
-//  filtroAltitude(planoCargaHorario)
-//);
-//console.log(filtroRestricaoHorario(planoCargaHorario));
->>>>>>> c84dcb741afb46f1124cb3327d1250beffd16ae8

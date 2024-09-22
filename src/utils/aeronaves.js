@@ -1,14 +1,4 @@
-import { ServicoAeronaves } from "../models/modelsServicoAeronaves.js";
-import { ServicoAerovias } from "../models/modelsServicoAerovias.js";
-import { ServicoPlanodeVoo } from "../models/modelsServicoPlanoDeVoo.js";
-import { ServicoPiloto } from "../models/modelsServicoPiloto.js";
-
-import {
-  servicoPiloto,
-  servicoAeronaves,
-  servicoPlanoDeVoo,
-  servicoAerovias,
-} from "../main.js";
+import { servicoPiloto, servicoAeronaves, servicoAerovias } from "../main.js";
 
 /*
 Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.000 pés. 
@@ -33,86 +23,87 @@ que o tamanho da aerovia);
 */
 
 export function filtroRestricaoHorario(PlanoDeVoo) {
-  //Aeronaves de carga só podem voar entre a meia noite e as 6:00 da manhã.
-  let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
-  let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
-  let tipoAeronave = aeronave.tipo;
+    //Aeronaves de carga só podem voar entre a meia noite e as 6:00 da manhã.
+    let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
+    let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
+    let tipoAeronave = aeronave.tipo;
 
-  let planoDeVooHorario = PlanoDeVoo.horario;
-  let hora = Number(planoDeVooHorario.split(":")[0]);
+    let planoDeVooHorario = PlanoDeVoo.horario;
+    let hora = Number(planoDeVooHorario.split(":")[0]);
 
-  if (tipoAeronave === "Carga" && hora > 0 && hora < 6) {
-    return true;
-  }
-  return false;
+    if (tipoAeronave === "Carga" && hora > 0 && hora < 6) {
+        return true;
+    }
+    return false;
 }
 
 export function filtroAltitude(PlanoDeVoo) {
-  /*
+    /*
   Aeronaves particulares de pequeno porte só podem voar entre 25.000 pés e 27.000 pés. 
   Aeronaves comerciais de passageiro só podem voar acima de 28.000 pés. 
   */
 
-  let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
-  let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
-  let tipoAeronave = aeronave.tipo;
+    let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
+    let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
+    let tipoAeronave = aeronave.tipo;
 
-  let planoDeVooAltitude = PlanoDeVoo.altitude;
+    let planoDeVooAltitude = PlanoDeVoo.altitude;
 
-  if (
-    tipoAeronave == "Particular" &&
-    planoDeVooAltitude > 24999 &&
-    planoDeVooAltitude < 27000
-  )
-    return true;
+    if (
+        tipoAeronave == "Particular" &&
+        planoDeVooAltitude > 24999 &&
+        planoDeVooAltitude < 27000
+    )
+        return true;
 
-  if (tipoAeronave == "Passageiros" && planoDeVooAltitude > 28000) return true;
+    if (tipoAeronave == "Passageiros" && planoDeVooAltitude > 28000)
+        return true;
 
-  return false;
+    return false;
 }
 
 export function filtroAutonomiaAeronave(PlanoDeVoo) {
-  // A autonomia da aeronave deve ser no minimo 10%
-  //  superior ao tamanho da aerovia utilizada.
+    // A autonomia da aeronave deve ser no minimo 10%
+    //  superior ao tamanho da aerovia utilizada.
 
-  let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
-  let idAerovia = PlanoDeVoo.idAerovia;
+    let prefixoAeronave = PlanoDeVoo.prefixoAeronave;
+    let idAerovia = PlanoDeVoo.idAerovia;
 
-  let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
-  let aerovia = servicoAerovias.recuperarAerovia(idAerovia);
+    let aeronave = servicoAeronaves.recuperarAeronave(prefixoAeronave);
+    let aerovia = servicoAerovias.recuperarAerovia(idAerovia);
 
-  let automiaSeguranca = aerovia.tamanhoAerovia * 1.1;
-  let aeronaveAutonomia = aeronave.autonomia;
+    let automiaSeguranca = aerovia.tamanhoAerovia * 1.1;
+    let aeronaveAutonomia = aeronave.autonomia;
 
-  if (automiaSeguranca < aeronaveAutonomia) {
-    return true;
-  }
-  return false;
+    if (automiaSeguranca < aeronaveAutonomia) {
+        return true;
+    }
+    return false;
 }
 
 export function filtroHabilitacao(PlanoDeVoo) {
-  let piloto = servicoPiloto.recuperarPiloto(PlanoDeVoo.matriculaPiloto);
-  if (piloto.habilitacaoAtiva) {
-    return true;
-  }
-  return false;
+    let piloto = servicoPiloto.recuperarPiloto(PlanoDeVoo.matriculaPiloto);
+    if (piloto.habilitacaoAtiva) {
+        return true;
+    }
+    return false;
 }
 
 export function filtroAeronavePlanoDevoo(Aeronave, PlanoDeVoo) {
-  if (
-    Aeronave.tipo === "Particular" &&
-    PlanoDeVoo.altitude < 27000 &&
-    PlanoDeVoo.altitude > 25000
-  ) {
-    console.log("Dentro de tipo Particular");
-    return true;
-  } else if (Aeronave.tipo === "Passageiro" && PlanoDeVoo.altitude > 28000) {
-    console.log("Dentro de tipo passageiro");
-    return true;
-  } else if (Aeronave.tipo === "Carga" && PlanoDeVoo.altitude > 28000) {
-    console.log("Dentro de tipo carga");
-    return true;
-  }
-  console.log("rodou o false");
-  return false;
+    if (
+        Aeronave.tipo === "Particular" &&
+        PlanoDeVoo.altitude < 27000 &&
+        PlanoDeVoo.altitude > 25000
+    ) {
+        console.log("Dentro de tipo Particular");
+        return true;
+    } else if (Aeronave.tipo === "Passageiro" && PlanoDeVoo.altitude > 28000) {
+        console.log("Dentro de tipo passageiro");
+        return true;
+    } else if (Aeronave.tipo === "Carga" && PlanoDeVoo.altitude > 28000) {
+        console.log("Dentro de tipo carga");
+        return true;
+    }
+    console.log("rodou o false");
+    return false;
 }
